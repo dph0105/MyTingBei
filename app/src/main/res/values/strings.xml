@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">听呗</string>
+    <string name="radio_program_default_info">暂无节目信息</string>
+    <string name="radio_default_listen_num">收听人数:</string>
+</resources>
