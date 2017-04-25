@@ -29,7 +29,7 @@ public class RxTransfromer {
             @Override
             public Publisher<T> apply(@NonNull Flowable<T> upstream) {
                 return upstream.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
+                        .observeOn(Schedulers.io());
             }
         };
     }

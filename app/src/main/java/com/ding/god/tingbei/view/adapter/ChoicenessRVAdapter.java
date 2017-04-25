@@ -6,13 +6,10 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -133,6 +130,7 @@ public class ChoicenessRVAdapter extends BaseRVAdapter<ChoicenessBean, Choicenes
                             ImageView imageView = new ImageView(mContext);
                             imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                             mImageUtil.loadURLImage(data.getBanner().get(i).getImage_url(), imageView);
+                            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                             imageViews.add(imageView);
                             ImageView indicator = new ImageView(mContext);
                             //indicator.setButtonDrawable(null);

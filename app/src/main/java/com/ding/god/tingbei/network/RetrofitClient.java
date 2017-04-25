@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     //基础接口
     private static final String API_BASE_URL = "http://apinew2.tinberfm.cn/index.php/";
-
+    private static final String API_BASE_OLD_URL = "http://apinew.tinberfm.com/interface/";
 
     private Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)
@@ -24,7 +24,15 @@ public class RetrofitClient {
             .client(new OkHttpClient())
             .build();
 
+    private Retrofit retrofit2 = new Retrofit.Builder()
+            .baseUrl(API_BASE_OLD_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(new OkHttpClient())
+            .build();
+
     private APIService mAPIService = retrofit.create(APIService.class);
+    private APIService mAPIService2 = retrofit2.create(APIService.class);
 
     private static class SingleRetrofit{
         private static final RetrofitClient SINGLEINSTANCE = new RetrofitClient();
@@ -36,6 +44,10 @@ public class RetrofitClient {
 
     public static APIService getAPIService(){
         return SingleRetrofit.SINGLEINSTANCE.mAPIService;
+    }
+
+    public static APIService getAPIService2(){
+        return SingleRetrofit.SINGLEINSTANCE.mAPIService2;
     }
 
     public <T extends BaseResponse> void toSubscribe(Flowable<T> f, MConsumer<T> c){

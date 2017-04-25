@@ -1,17 +1,11 @@
 package com.ding.god.tingbei.view.fragment;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
 
-import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
-import com.aspsine.swipetoloadlayout.OnRefreshListener;
-import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.andview.refreshview.XRefreshView;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseFragment;
 import com.ding.god.tingbei.customview.RecyclerViewDivider;
@@ -29,8 +23,8 @@ public class ChoicenessFragment extends BaseFragment<ChoicenessPresenter> implem
 
     @BindView(R.id.swipe_target)
     RecyclerView recyclerView;
-    @BindView(R.id.swipToLoadLayout)
-    SwipeToLoadLayout swipToLoadLayout;
+    @BindView(R.id.xrv)
+    XRefreshView xrv;
     private ChoicenessRVAdapter rvAdapter;
 
 
@@ -61,6 +55,9 @@ public class ChoicenessFragment extends BaseFragment<ChoicenessPresenter> implem
     //view的初始化处理
     @Override
     public void initView() {
+
+        xrv.setLoadComplete(true);
+        xrv.setPinnedTime(1000);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         int dividerHeight = DensityUtil.dp2px(mContext,10);
         int color = mContext.getResources().getColor(R.color.bg_divider);
@@ -77,13 +74,14 @@ public class ChoicenessFragment extends BaseFragment<ChoicenessPresenter> implem
 
     @Override
     public void bindListener() {
-        swipToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
+        xrv.setXRefreshViewListener(new XRefreshView.SimpleXRefreshListener(){
             @Override
-            public void onRefresh() {
+            public void onRefresh(boolean isPullDown) {
+                super.onRefresh(isPullDown);
                 presenter.refresh();
             }
         });
-       swipToLoadLayout.setLoadMoreEnabled(false);
+
     }
 
 
@@ -101,7 +99,8 @@ public class ChoicenessFragment extends BaseFragment<ChoicenessPresenter> implem
 
     @Override
     public void refreshComplete() {
-        swipToLoadLayout.setRefreshing(false);
+
+        xrv.stopRefresh();
     }
 
 }

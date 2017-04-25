@@ -2,4 +2,8 @@
     <string name="app_name">听呗</string>
     <string name="radio_program_default_info">暂无节目信息</string>
     <string name="radio_default_listen_num">收听人数:</string>
+    <string name="local">浙江</string>
+    <string name="country">国家台</string>
+    <string name="province_city">省市台</string>
+    <string name="network">网络台</string>
 </resources>

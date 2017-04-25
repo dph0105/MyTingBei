@@ -26,7 +26,7 @@ public class ChoicenessPresenter extends BasePresenter<ChoicenessModel,IChoicene
     }
     public void initData() {
         mAPiService.postChoiceness(APPConstants.AREA_ID)
-                .compose(RxTransfromer.<BaseResponse<ChoicenessBean>>observeOnToIO())
+                .compose(RxTransfromer.<BaseResponse<ChoicenessBean>>observeOnToMain())
                 .subscribe(new MConsumer<BaseResponse<ChoicenessBean>>() {
                     @Override
                     public void response(BaseResponse<ChoicenessBean> response) {
@@ -38,7 +38,7 @@ public class ChoicenessPresenter extends BasePresenter<ChoicenessModel,IChoicene
 
     public void refresh(){
         mAPiService.postChoiceness(APPConstants.AREA_ID)
-                .compose(RxTransfromer.<BaseResponse<ChoicenessBean>>observeOnToIO())
+                .compose(RxTransfromer.<BaseResponse<ChoicenessBean>>observeOnToMain())
                 .subscribe(new MConsumer<BaseResponse<ChoicenessBean>>() {
                     @Override
                     public void response(BaseResponse<ChoicenessBean> response) {

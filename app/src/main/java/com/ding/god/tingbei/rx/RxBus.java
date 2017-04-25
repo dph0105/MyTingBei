@@ -35,4 +35,8 @@ public class RxBus {
         return rxBus.ofType(eventType);
     }
 
+    public void post(Object o){
+        rxBus.onNext(o);
+    }
+
 }
