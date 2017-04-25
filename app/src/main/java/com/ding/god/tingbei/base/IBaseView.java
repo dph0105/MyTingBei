@@ -7,4 +7,5 @@ package com.ding.god.tingbei.base;
 public interface IBaseView {
     void initView();
     void initData();
+    void bindListener();
 }

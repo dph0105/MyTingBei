@@ -8,6 +8,7 @@ import com.ding.god.tingbei.model.ChoicenessModel;
 import com.ding.god.tingbei.model.bean.ChoicenessBean;
 import com.ding.god.tingbei.network.BaseResponse;
 import com.ding.god.tingbei.network.MConsumer;
+import com.ding.god.tingbei.rx.RxBus;
 import com.ding.god.tingbei.rx.RxTransfromer;
 import com.ding.god.tingbei.view.iview.IChoicenessView;
 
@@ -16,6 +17,8 @@ import com.ding.god.tingbei.view.iview.IChoicenessView;
  */
 
 public class ChoicenessPresenter extends BasePresenter<ChoicenessModel,IChoicenessView> {
+
+    RxBus rxBus = RxBus.getRxBus();
 
     public ChoicenessPresenter(Context context, IChoicenessView mView) {
         super(context, mView);
@@ -32,5 +35,21 @@ public class ChoicenessPresenter extends BasePresenter<ChoicenessModel,IChoicene
                     }
                 });
     }
+
+    public void refresh(){
+        mAPiService.postChoiceness(APPConstants.AREA_ID)
+                .compose(RxTransfromer.<BaseResponse<ChoicenessBean>>observeOnToIO())
+                .subscribe(new MConsumer<BaseResponse<ChoicenessBean>>() {
+                    @Override
+                    public void response(BaseResponse<ChoicenessBean> response) {
+                        mModel.setData(response.getData());
+                        mView.clearData();
+                        mView.addData(response.getData());
+                        mView.refreshComplete();
+                    }
+                });
+    }
+
+
 
 }

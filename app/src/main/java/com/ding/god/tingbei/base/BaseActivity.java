@@ -33,6 +33,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
 
     @Override
     protected void onDestroy() {
+        presenter.onDestroy();
         super.onDestroy();
         ButterKnife.bind(this).unbind();
     }

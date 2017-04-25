@@ -57,6 +57,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
     }
 
     @Override
+    public void bindListener() {
+
+    }
+
+    @Override
     public void setVPAdapter(List<BaseFragment> fragments, String[] tabTitle) {
         //初始化ViewPager的适配器
         HomePagerAdapter homePagerAdapter = new HomePagerAdapter(this, getSupportFragmentManager(), fragments, tabTitle);

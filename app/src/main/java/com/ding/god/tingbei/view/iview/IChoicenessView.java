@@ -12,4 +12,7 @@ public interface IChoicenessView extends IBaseView {
 
     void addData(ChoicenessBean data);
 
+    void clearData();
+
+    void refreshComplete();
 }

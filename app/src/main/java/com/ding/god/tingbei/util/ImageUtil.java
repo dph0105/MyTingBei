@@ -3,6 +3,7 @@ package com.ding.god.tingbei.util;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -19,7 +20,7 @@ public class ImageUtil {
 
 
     public void loadURLImage(String url, ImageView imageView){
-          Picasso.with(context)
+          Glide.with(context)
                   .load(url)
                   .into(imageView);
     }

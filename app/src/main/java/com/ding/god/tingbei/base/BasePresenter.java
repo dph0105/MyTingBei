@@ -27,6 +27,11 @@ public abstract class BasePresenter<M extends BaseModel,V extends IBaseView> {
     public void init(){
         mView.initView();
         mView.initData();
+        mView.bindListener();
+    }
+
+    public void onDestroy(){
+        mView = null;
     }
 
 

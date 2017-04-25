@@ -1,14 +1,23 @@
 package com.ding.god.tingbei.view.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
+import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseFragment;
+import com.ding.god.tingbei.customview.RecyclerViewDivider;
 import com.ding.god.tingbei.model.bean.ChoicenessBean;
 import com.ding.god.tingbei.presenter.ChoicenessPresenter;
+import com.ding.god.tingbei.util.DensityUtil;
 import com.ding.god.tingbei.view.adapter.ChoicenessRVAdapter;
 import com.ding.god.tingbei.view.iview.IChoicenessView;
 
@@ -53,13 +62,28 @@ public class ChoicenessFragment extends BaseFragment<ChoicenessPresenter> implem
     @Override
     public void initView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        int dividerHeight = DensityUtil.dp2px(mContext,10);
+        int color = mContext.getResources().getColor(R.color.bg_divider);
+        recyclerView.addItemDecoration(new RecyclerViewDivider(mContext,LinearLayoutManager.VERTICAL,dividerHeight,color));
         rvAdapter = new ChoicenessRVAdapter(mContext);
         recyclerView.setAdapter(rvAdapter);
+
     }
 
     @Override
     public void initData() {
         presenter.initData();
+    }
+
+    @Override
+    public void bindListener() {
+        swipToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.refresh();
+            }
+        });
+       swipToLoadLayout.setLoadMoreEnabled(false);
     }
 
 
@@ -69,5 +93,15 @@ public class ChoicenessFragment extends BaseFragment<ChoicenessPresenter> implem
         rvAdapter.add(data);
     }
 
+    @Override
+    public void clearData() {
+        rvAdapter.clearAll();
+    }
+
+
+    @Override
+    public void refreshComplete() {
+        swipToLoadLayout.setRefreshing(false);
+    }
 
 }
