@@ -8,7 +8,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:text="有声小说"
         android:textSize="17dp"
         android:textColor="@color/black"
         android:drawableRight="@mipmap/triangle_right"

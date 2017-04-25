@@ -8,6 +8,7 @@
     <include android:id="@+id/swipe_refresh_header"
         layout="@layout/layout_swipe_refresh_header"/>
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/swipe_target"
         android:layout_width="match_parent"

@@ -16,17 +16,18 @@
             android:id="@+id/iv_radio_icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher"
             />
     </android.support.v7.widget.CardView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/cv"
+        android:orientation="vertical"
+        android:layout_centerVertical="true">
     <TextView
         android:id="@+id/tv_radio_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/cv"
-        android:layout_marginTop="10dp"
-        android:layout_alignTop="@id/cv"
-        android:text="浙江广播电台"
         android:textColor="@color/black"
         android:textSize="16sp"
         />
@@ -35,21 +36,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/tv_radio_name"
-        android:layout_toEndOf="@id/cv"
-        android:text="@string/radio_program_default_info"
         android:textSize="15sp"
+        android:lines="1"
+        android:ellipsize="end"
         android:textColor="@color/text_medium_gray"
         />
     <TextView
         android:id="@+id/tv_radio_listen_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_radio_program_info"
-        android:layout_toEndOf="@id/cv"
         android:layout_marginTop="10dp"
-        android:text="@string/radio_default_listen_num"
         android:textSize="14sp"
         android:textColor="@color/text_gray"
         />
+    </LinearLayout>
 </RelativeLayout>

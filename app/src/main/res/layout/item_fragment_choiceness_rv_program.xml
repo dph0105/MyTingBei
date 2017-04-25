@@ -2,24 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
+    android:background="@color/white"
     >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_line"/>
     <TextView
         android:id="@+id/tv_item_program_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:text="有声小说"
         android:textSize="17dp"
         android:textColor="@color/black"
         android:drawableRight="@mipmap/triangle_right"
         android:drawablePadding="5dp"
         android:layout_marginBottom="15dp"
+        android:background="@color/white"
         />
     <com.ding.god.tingbei.customview.CustomRV
         android:id="@+id/rv_item_choiceness_program"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_line"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
