@@ -55,7 +55,6 @@ public class ChoicenessFragment extends BaseFragment<ChoicenessPresenter> implem
     //view的初始化处理
     @Override
     public void initView() {
-
         xrv.setLoadComplete(true);
         xrv.setPinnedTime(1000);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

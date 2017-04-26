@@ -48,6 +48,8 @@ public abstract class BaseFragment<P extends BasePresenter> extends RxFragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        presenter.onDestroy();
+        if(presenter!=null) {
+            presenter.onDestroy();
+        }
     }
 }

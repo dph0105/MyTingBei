@@ -18,8 +18,6 @@ import com.ding.god.tingbei.view.iview.IChoicenessView;
 
 public class ChoicenessPresenter extends BasePresenter<ChoicenessModel,IChoicenessView> {
 
-    RxBus rxBus = RxBus.getRxBus();
-
     public ChoicenessPresenter(Context context, IChoicenessView mView) {
         super(context, mView);
         mModel = new ChoicenessModel();

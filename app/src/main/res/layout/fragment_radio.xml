@@ -2,9 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/xrv"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_gray"
     tools:context=".view.fragment.RadioFragment">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,6 +20,7 @@
             android:gravity="center_vertical"
             android:background="@color/white">
             <TextView
+                android:id="@+id/tv_radio_local"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -24,6 +29,7 @@
                 android:drawableTop="@mipmap/radio_local"
                 />
             <TextView
+                android:id="@+id/tv_radio_country"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -32,6 +38,7 @@
                 android:drawableTop="@mipmap/radio_country"
                 />
             <TextView
+                android:id="@+id/tv_radio_province_city"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -40,6 +47,7 @@
                 android:drawableTop="@mipmap/radio_province_city"
                 />
             <TextView
+                android:id="@+id/tv_radio_net"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -71,4 +79,5 @@
             android:layout_height="match_parent"
             android:background="@color/white"/>
     </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </com.andview.refreshview.XRefreshView>

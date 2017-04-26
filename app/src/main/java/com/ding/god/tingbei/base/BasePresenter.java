@@ -13,6 +13,7 @@ public abstract class BasePresenter<M extends BaseModel,V extends IBaseView> {
 
     protected Context context;
     protected APIService mAPiService;
+    protected APIService mAPIService2;
     protected RetrofitClient mRetrofitClient;
     protected M mModel;
     protected V mView;
@@ -21,6 +22,7 @@ public abstract class BasePresenter<M extends BaseModel,V extends IBaseView> {
         this.context = context;
         this.mView = mView;
         mAPiService = RetrofitClient.getAPIService();
+        mAPIService2 = RetrofitClient.getAPIService2();
         mRetrofitClient = RetrofitClient.getInstance();
     }
 
@@ -33,7 +35,6 @@ public abstract class BasePresenter<M extends BaseModel,V extends IBaseView> {
     public void onDestroy(){
         mView = null;
     }
-
 
 
 

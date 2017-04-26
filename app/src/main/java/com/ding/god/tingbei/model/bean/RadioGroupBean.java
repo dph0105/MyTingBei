@@ -17,10 +17,10 @@ public class RadioGroupBean {
      */
 
     private String category_id;
-    private List<RecommendBean> recommend;
-    private List<LocalRadioBean> local_radio;
-    private List<MusicRadioBean> music_radio;
-    private List<NationalRadioBean> national_radio;
+    private List<RadioBean> recommend;
+    private List<RadioBean> local_radio;
+    private List<RadioBean> music_radio;
+    private List<RadioBean> national_radio;
 
     public String getCategory_id() {
         return category_id;
@@ -30,39 +30,40 @@ public class RadioGroupBean {
         this.category_id = category_id;
     }
 
-    public List<RecommendBean> getRecommend() {
+    public List<RadioBean> getRecommend() {
         return recommend;
     }
 
-    public void setRecommend(List<RecommendBean> recommend) {
+    public void setRecommend(List<RadioBean> recommend) {
         this.recommend = recommend;
     }
 
-    public List<LocalRadioBean> getLocal_radio() {
+    public List<RadioBean> getLocal_radio() {
         return local_radio;
     }
 
-    public void setLocal_radio(List<LocalRadioBean> local_radio) {
+    public void setLocal_radio(List<RadioBean> local_radio) {
         this.local_radio = local_radio;
     }
 
-    public List<MusicRadioBean> getMusic_radio() {
+    public List<RadioBean> getMusic_radio() {
         return music_radio;
     }
 
-    public void setMusic_radio(List<MusicRadioBean> music_radio) {
+    public void setMusic_radio(List<RadioBean> music_radio) {
         this.music_radio = music_radio;
     }
 
-    public List<NationalRadioBean> getNational_radio() {
+    public List<RadioBean> getNational_radio() {
         return national_radio;
     }
 
-    public void setNational_radio(List<NationalRadioBean> national_radio) {
+    public void setNational_radio(List<RadioBean> national_radio) {
         this.national_radio = national_radio;
     }
 
-    public static class RecommendBean {
+
+    public static class RadioBean {
         /**
          * radio_id : 517WLWrj6Gem8JR
          * live_stream : http://hls1.gzstv.com/livegztv/yinyue/index.m3u8
@@ -83,181 +84,6 @@ public class RadioGroupBean {
          * radio_audience : 193552
          */
 
-        private String radio_id;
-        private String live_stream;
-        private String radio_name;
-        private String radio_number;
-        private String start_time;
-        private String end_time;
-        private String program_name;
-        private String program_describe;
-        private String album_id;
-        private String program_list_id;
-        private String image_url;
-        private String radio_img_url;
-        private String area_short_name;
-        private int ts_diffence;
-        private int program_type;
-        private int order_num;
-        private int radio_audience;
-
-        public String getRadio_id() {
-            return radio_id;
-        }
-
-        public void setRadio_id(String radio_id) {
-            this.radio_id = radio_id;
-        }
-
-        public String getLive_stream() {
-            return live_stream;
-        }
-
-        public void setLive_stream(String live_stream) {
-            this.live_stream = live_stream;
-        }
-
-        public String getRadio_name() {
-            return radio_name;
-        }
-
-        public void setRadio_name(String radio_name) {
-            this.radio_name = radio_name;
-        }
-
-        public String getRadio_number() {
-            return radio_number;
-        }
-
-        public void setRadio_number(String radio_number) {
-            this.radio_number = radio_number;
-        }
-
-        public String getStart_time() {
-            return start_time;
-        }
-
-        public void setStart_time(String start_time) {
-            this.start_time = start_time;
-        }
-
-        public String getEnd_time() {
-            return end_time;
-        }
-
-        public void setEnd_time(String end_time) {
-            this.end_time = end_time;
-        }
-
-        public String getProgram_name() {
-            return program_name;
-        }
-
-        public void setProgram_name(String program_name) {
-            this.program_name = program_name;
-        }
-
-        public String getProgram_describe() {
-            return program_describe;
-        }
-
-        public void setProgram_describe(String program_describe) {
-            this.program_describe = program_describe;
-        }
-
-        public String getAlbum_id() {
-            return album_id;
-        }
-
-        public void setAlbum_id(String album_id) {
-            this.album_id = album_id;
-        }
-
-        public String getProgram_list_id() {
-            return program_list_id;
-        }
-
-        public void setProgram_list_id(String program_list_id) {
-            this.program_list_id = program_list_id;
-        }
-
-        public String getImage_url() {
-            return image_url;
-        }
-
-        public void setImage_url(String image_url) {
-            this.image_url = image_url;
-        }
-
-        public String getRadio_img_url() {
-            return radio_img_url;
-        }
-
-        public void setRadio_img_url(String radio_img_url) {
-            this.radio_img_url = radio_img_url;
-        }
-
-        public String getArea_short_name() {
-            return area_short_name;
-        }
-
-        public void setArea_short_name(String area_short_name) {
-            this.area_short_name = area_short_name;
-        }
-
-        public int getTs_diffence() {
-            return ts_diffence;
-        }
-
-        public void setTs_diffence(int ts_diffence) {
-            this.ts_diffence = ts_diffence;
-        }
-
-        public int getProgram_type() {
-            return program_type;
-        }
-
-        public void setProgram_type(int program_type) {
-            this.program_type = program_type;
-        }
-
-        public int getOrder_num() {
-            return order_num;
-        }
-
-        public void setOrder_num(int order_num) {
-            this.order_num = order_num;
-        }
-
-        public int getRadio_audience() {
-            return radio_audience;
-        }
-
-        public void setRadio_audience(int radio_audience) {
-            this.radio_audience = radio_audience;
-        }
-    }
-
-    public static class LocalRadioBean {
-        /**
-         * radio_id : OLXMRUh7ftFcl0R
-         * live_stream : http://pili-live-hls.qiniu.tinberfm.com/live-yuanyu/cztv02.m3u8
-         * radio_name : 浙江之声
-         * radio_number : FM88
-         * start_time : 22:00
-         * end_time : 23:00
-         * program_name : 三味书屋
-         * program_describe : 带你领略经典国学和寓言文化的精彩！
-         * album_id : 30Wu86USgQFVxnA
-         * program_list_id :
-         * image_url : http://image.tinberfm.com//uploadnew/804381467048904.jpg
-         * radio_img_url : http://image.tinberfm.com//uploadnew/804381467048904.jpg
-         * area_short_name : 浙江
-         * ts_diffence : 165
-         * program_type : 1
-         * order_num : 1
-         * radio_audience : 20482
-         */
 
         private String radio_id;
         private String live_stream;
@@ -414,355 +240,5 @@ public class RadioGroupBean {
         }
     }
 
-    public static class MusicRadioBean {
-        /**
-         * radio_id : cYPE739UcNuMhO6
-         * live_stream : http://live.xmcdn.com/live/74/64.m3u8
-         * radio_name : 广东电台音乐之声
-         * radio_number : FM99.3
-         * start_time : 22:00
-         * end_time : 23:00
-         * program_name : 薇薇一笑
-         * program_describe : 国内第一家开播的音乐电台，移动动听第一选择
-         * album_id : i1qix7cf1jfNwGI
-         * program_list_id :
-         * image_url : http://image.tinberfm.com//uploadnew/330441493113025.jpg
-         * radio_img_url : http://image.tinberfm.com//uploadnew/330441493113025.jpg
-         * area_short_name : 广东
-         * ts_diffence : 165
-         * program_type : 1
-         * order_num : 1
-         * radio_audience : 339598
-         */
 
-        private String radio_id;
-        private String live_stream;
-        private String radio_name;
-        private String radio_number;
-        private String start_time;
-        private String end_time;
-        private String program_name;
-        private String program_describe;
-        private String album_id;
-        private String program_list_id;
-        private String image_url;
-        private String radio_img_url;
-        private String area_short_name;
-        private int ts_diffence;
-        private int program_type;
-        private int order_num;
-        private int radio_audience;
-
-        public String getRadio_id() {
-            return radio_id;
-        }
-
-        public void setRadio_id(String radio_id) {
-            this.radio_id = radio_id;
-        }
-
-        public String getLive_stream() {
-            return live_stream;
-        }
-
-        public void setLive_stream(String live_stream) {
-            this.live_stream = live_stream;
-        }
-
-        public String getRadio_name() {
-            return radio_name;
-        }
-
-        public void setRadio_name(String radio_name) {
-            this.radio_name = radio_name;
-        }
-
-        public String getRadio_number() {
-            return radio_number;
-        }
-
-        public void setRadio_number(String radio_number) {
-            this.radio_number = radio_number;
-        }
-
-        public String getStart_time() {
-            return start_time;
-        }
-
-        public void setStart_time(String start_time) {
-            this.start_time = start_time;
-        }
-
-        public String getEnd_time() {
-            return end_time;
-        }
-
-        public void setEnd_time(String end_time) {
-            this.end_time = end_time;
-        }
-
-        public String getProgram_name() {
-            return program_name;
-        }
-
-        public void setProgram_name(String program_name) {
-            this.program_name = program_name;
-        }
-
-        public String getProgram_describe() {
-            return program_describe;
-        }
-
-        public void setProgram_describe(String program_describe) {
-            this.program_describe = program_describe;
-        }
-
-        public String getAlbum_id() {
-            return album_id;
-        }
-
-        public void setAlbum_id(String album_id) {
-            this.album_id = album_id;
-        }
-
-        public String getProgram_list_id() {
-            return program_list_id;
-        }
-
-        public void setProgram_list_id(String program_list_id) {
-            this.program_list_id = program_list_id;
-        }
-
-        public String getImage_url() {
-            return image_url;
-        }
-
-        public void setImage_url(String image_url) {
-            this.image_url = image_url;
-        }
-
-        public String getRadio_img_url() {
-            return radio_img_url;
-        }
-
-        public void setRadio_img_url(String radio_img_url) {
-            this.radio_img_url = radio_img_url;
-        }
-
-        public String getArea_short_name() {
-            return area_short_name;
-        }
-
-        public void setArea_short_name(String area_short_name) {
-            this.area_short_name = area_short_name;
-        }
-
-        public int getTs_diffence() {
-            return ts_diffence;
-        }
-
-        public void setTs_diffence(int ts_diffence) {
-            this.ts_diffence = ts_diffence;
-        }
-
-        public int getProgram_type() {
-            return program_type;
-        }
-
-        public void setProgram_type(int program_type) {
-            this.program_type = program_type;
-        }
-
-        public int getOrder_num() {
-            return order_num;
-        }
-
-        public void setOrder_num(int order_num) {
-            this.order_num = order_num;
-        }
-
-        public int getRadio_audience() {
-            return radio_audience;
-        }
-
-        public void setRadio_audience(int radio_audience) {
-            this.radio_audience = radio_audience;
-        }
-    }
-
-    public static class NationalRadioBean {
-        /**
-         * radio_id : cYPE739UcNuMhO6
-         * live_stream : http://live.xmcdn.com/live/74/64.m3u8
-         * radio_name : 广东电台音乐之声
-         * radio_number : FM99.3
-         * start_time : 22:00
-         * end_time : 23:00
-         * program_name : 薇薇一笑
-         * program_describe : 国内第一家开播的音乐电台，移动动听第一选择
-         * album_id : i1qix7cf1jfNwGI
-         * program_list_id :
-         * image_url : http://image.tinberfm.com//uploadnew/330441493113025.jpg
-         * radio_img_url : http://image.tinberfm.com//uploadnew/330441493113025.jpg
-         * area_short_name : 广东
-         * ts_diffence : 164
-         * program_type : 1
-         * order_num : 1
-         * radio_audience : 339598
-         */
-
-        private String radio_id;
-        private String live_stream;
-        private String radio_name;
-        private String radio_number;
-        private String start_time;
-        private String end_time;
-        private String program_name;
-        private String program_describe;
-        private String album_id;
-        private String program_list_id;
-        private String image_url;
-        private String radio_img_url;
-        private String area_short_name;
-        private int ts_diffence;
-        private int program_type;
-        private int order_num;
-        private int radio_audience;
-
-        public String getRadio_id() {
-            return radio_id;
-        }
-
-        public void setRadio_id(String radio_id) {
-            this.radio_id = radio_id;
-        }
-
-        public String getLive_stream() {
-            return live_stream;
-        }
-
-        public void setLive_stream(String live_stream) {
-            this.live_stream = live_stream;
-        }
-
-        public String getRadio_name() {
-            return radio_name;
-        }
-
-        public void setRadio_name(String radio_name) {
-            this.radio_name = radio_name;
-        }
-
-        public String getRadio_number() {
-            return radio_number;
-        }
-
-        public void setRadio_number(String radio_number) {
-            this.radio_number = radio_number;
-        }
-
-        public String getStart_time() {
-            return start_time;
-        }
-
-        public void setStart_time(String start_time) {
-            this.start_time = start_time;
-        }
-
-        public String getEnd_time() {
-            return end_time;
-        }
-
-        public void setEnd_time(String end_time) {
-            this.end_time = end_time;
-        }
-
-        public String getProgram_name() {
-            return program_name;
-        }
-
-        public void setProgram_name(String program_name) {
-            this.program_name = program_name;
-        }
-
-        public String getProgram_describe() {
-            return program_describe;
-        }
-
-        public void setProgram_describe(String program_describe) {
-            this.program_describe = program_describe;
-        }
-
-        public String getAlbum_id() {
-            return album_id;
-        }
-
-        public void setAlbum_id(String album_id) {
-            this.album_id = album_id;
-        }
-
-        public String getProgram_list_id() {
-            return program_list_id;
-        }
-
-        public void setProgram_list_id(String program_list_id) {
-            this.program_list_id = program_list_id;
-        }
-
-        public String getImage_url() {
-            return image_url;
-        }
-
-        public void setImage_url(String image_url) {
-            this.image_url = image_url;
-        }
-
-        public String getRadio_img_url() {
-            return radio_img_url;
-        }
-
-        public void setRadio_img_url(String radio_img_url) {
-            this.radio_img_url = radio_img_url;
-        }
-
-        public String getArea_short_name() {
-            return area_short_name;
-        }
-
-        public void setArea_short_name(String area_short_name) {
-            this.area_short_name = area_short_name;
-        }
-
-        public int getTs_diffence() {
-            return ts_diffence;
-        }
-
-        public void setTs_diffence(int ts_diffence) {
-            this.ts_diffence = ts_diffence;
-        }
-
-        public int getProgram_type() {
-            return program_type;
-        }
-
-        public void setProgram_type(int program_type) {
-            this.program_type = program_type;
-        }
-
-        public int getOrder_num() {
-            return order_num;
-        }
-
-        public void setOrder_num(int order_num) {
-            this.order_num = order_num;
-        }
-
-        public int getRadio_audience() {
-            return radio_audience;
-        }
-
-        public void setRadio_audience(int radio_audience) {
-            this.radio_audience = radio_audience;
-        }
-    }
 }

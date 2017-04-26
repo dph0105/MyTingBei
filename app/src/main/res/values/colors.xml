@@ -11,4 +11,5 @@
     <color name="bg_divider">#f5f5f9</color>
     <color name="bg_line">#f5f5f5</color>
     <color name="red_indicator">#e9463f</color>
+    <color name="bg_gray_f5f5f6">#f5f5f6</color>
 </resources>
