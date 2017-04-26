@@ -6,78 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_gray"
     tools:context=".view.fragment.RadioFragment">
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <LinearLayout
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_fragment_radio"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@color/white">
-            <TextView
-                android:id="@+id/tv_radio_local"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/local"
-                android:drawableTop="@mipmap/radio_local"
-                />
-            <TextView
-                android:id="@+id/tv_radio_country"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/country"
-                android:drawableTop="@mipmap/radio_country"
-                />
-            <TextView
-                android:id="@+id/tv_radio_province_city"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/province_city"
-                android:drawableTop="@mipmap/radio_province_city"
-                />
-            <TextView
-                android:id="@+id/tv_radio_net"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/network"
-                android:drawableTop="@mipmap/radio_network"
-                />
-        </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_radio_category"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:background="@color/white"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="15dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/bg_gray" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/bg_gray"
-            android:layout_marginTop="10dp"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_fragment_radio"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"/>
-    </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+        android:background="@color/white"/>
+
 </com.andview.refreshview.XRefreshView>

@@ -21,17 +21,19 @@ import butterknife.ButterKnife;
 
 public class RVRadioGroupItemAdapter extends BaseRVAdapter<RadioGroupBean.RadioBean, RecyclerView.ViewHolder> {
 
-    private static final int TYPE_RECOMMEND = 0;
-    private static final int TYPE_RADIO = 1;
+    public static final int TYPE_RECOMMEND = 0;
+    public static final int TYPE_RADIO = 1;
+    private int type;
 
-    public RVRadioGroupItemAdapter(Context context) {
+    public RVRadioGroupItemAdapter(Context context,int type) {
         super(context);
+        this.type = type;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
-        switch (viewType) {
+        switch (type) {
             case TYPE_RECOMMEND:
                 view = mInflater.inflate(R.layout.item_fragment_radio_rvitem_recommend, parent, false);
                 return new RadioRecommendViewHolder(view);
@@ -43,15 +45,10 @@ public class RVRadioGroupItemAdapter extends BaseRVAdapter<RadioGroupBean.RadioB
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return position==0?TYPE_RECOMMEND:TYPE_RADIO;
-    }
-
-    @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         RadioGroupBean.RadioBean data = getDatas().get(position);
         String s = "直播中:%s";
-        switch (getItemViewType(position)){
+        switch (type){
             case TYPE_RECOMMEND:
                 RadioRecommendViewHolder recommendHolder = (RadioRecommendViewHolder) holder;
                 recommendHolder.tvRadioName.setText(data.getRadio_name());
