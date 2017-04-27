@@ -2,6 +2,7 @@ package com.ding.god.tingbei.view.adapter;
 
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +13,10 @@ import android.widget.TextView;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseRVAdapter;
 import com.ding.god.tingbei.customview.CustomRV;
-import com.ding.god.tingbei.customview.RecyclerViewDivider;
+import com.ding.god.tingbei.customview.DividerItemDecoration;
 import com.ding.god.tingbei.model.bean.RadioCategoryBean;
 import com.ding.god.tingbei.model.bean.RadioGroupBean;
+import com.ding.god.tingbei.util.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,8 @@ public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.V
     private static final int TYPE_MUSIC_RADIO = 2;
     private static final int TYPE_COUNTRY_RADIO = 3;
     private static final int TYPE_CATEGORY = 4;
-
+    private boolean first1 = true;
+    private boolean first2 = true;
     private List<RadioCategoryBean.StyleBean> categoryDatas;
 
     public RVRadioAdapter(Context context) {
@@ -44,6 +47,10 @@ public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.V
     public void addCategoryDataAll(List<RadioCategoryBean.StyleBean> categoryDatas){
         this.categoryDatas.addAll(categoryDatas);
         notifyDataSetChanged();
+    }
+
+    public void clearCategoryData(){
+        this.categoryDatas.clear();
     }
 
     private String getItemTitle(int viewType) {
@@ -97,12 +104,16 @@ public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.V
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
         if (getItemViewType(position)==TYPE_CATEGORY){
             CategoryViewHolder categoryViewHolder = (CategoryViewHolder) holder;
             //设置电台分类的recyclerview
             categoryViewHolder.rvRadioCategory.setLayoutManager(new GridLayoutManager(mContext, 4));
             RVRadioCategoryAdapter categoryAdapter = new RVRadioCategoryAdapter(mContext);
+            int dividerH = DensityUtil.dp2px(mContext, 5);
+            if(first1) {
+                categoryViewHolder.rvRadioCategory.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.BOTH_SET,dividerH,mContext.getResources().getColor(R.color.white)));
+                first1 = false;
+            }
             categoryViewHolder.rvRadioCategory.setAdapter(categoryAdapter);
             categoryAdapter.addAll(categoryDatas);
         }else {
@@ -114,8 +125,11 @@ public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.V
                     case TYPE_RECOMMENT:
                         RVRadioGroupItemAdapter adapter = new RVRadioGroupItemAdapter(mContext, RVRadioGroupItemAdapter.TYPE_RECOMMEND);
                         groupViewHolder.rvItemChoicenessProgram.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+                        if(first2) {
+                            groupViewHolder.rvItemChoicenessProgram.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL_LINE,20,mContext.getResources().getColor(R.color.white)));
+                            first2 = false;
+                        }
                         groupViewHolder.rvItemChoicenessProgram.setAdapter(adapter);
-                        groupViewHolder.rvItemChoicenessProgram.addItemDecoration(new RecyclerViewDivider(mContext,LinearLayoutManager.HORIZONTAL,20,mContext.getResources().getColor(R.color.bg_divider)));
                         adapter.addAll(data.getRecommend());
                         break;
                     case TYPE_LOCAL_MUSIC:
@@ -167,6 +181,7 @@ public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.V
         CategoryViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+
         }
     }
 }

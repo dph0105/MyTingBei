@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 
 
-public abstract class BaseFragment<P extends BasePresenter> extends RxFragment{
+public abstract class BaseFragment<P extends BasePresenter> extends RxFragment implements IBaseView{
 
     protected P presenter;
     protected Context mContext;
@@ -50,6 +52,17 @@ public abstract class BaseFragment<P extends BasePresenter> extends RxFragment{
         super.onDestroy();
         if(presenter!=null) {
             presenter.onDestroy();
+        }
+    }
+
+    @Override
+    public void toast(String message, int time) {
+        if(message!=null&&message.length()!=0) {
+            if(time==0) {
+                Toast.makeText(mContext,message,Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(mContext,message,time);
+            }
         }
     }
 }

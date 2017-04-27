@@ -68,6 +68,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
         vpActivityHome.setAdapter(homePagerAdapter);
         //TabLayout绑定ViewPager
         tablayoutActivityHome.setupWithViewPager(vpActivityHome);
+        vpActivityHome.setOffscreenPageLimit(3);
     }
 
     //点击跳转到搜索页面

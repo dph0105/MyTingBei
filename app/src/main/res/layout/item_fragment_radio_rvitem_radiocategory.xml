@@ -6,7 +6,7 @@
         android:id="@+id/tv_category"
         android:layout_width="80dp"
         android:layout_height="45dp"
-        android:textSize="17dp"
+        android:textSize="15dp"
         android:textColor="@color/black"
         android:gravity="center"
         android:background="@color/bg_gray_f5f5f6"

@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.andview.refreshview.XRefreshView;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseFragment;
-import com.ding.god.tingbei.customview.RecyclerViewDivider;
+import com.ding.god.tingbei.customview.DividerItemDecoration;
 import com.ding.god.tingbei.model.bean.ChoicenessBean;
 import com.ding.god.tingbei.presenter.ChoicenessPresenter;
 import com.ding.god.tingbei.util.DensityUtil;
@@ -60,7 +60,7 @@ public class ChoicenessFragment extends BaseFragment<ChoicenessPresenter> implem
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         int dividerHeight = DensityUtil.dp2px(mContext,10);
         int color = mContext.getResources().getColor(R.color.bg_divider);
-        recyclerView.addItemDecoration(new RecyclerViewDivider(mContext,LinearLayoutManager.VERTICAL,dividerHeight,color));
+        recyclerView.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.HORIZONTAL_LINE,dividerHeight,color));
         rvAdapter = new ChoicenessRVAdapter(mContext);
         recyclerView.setAdapter(rvAdapter);
 
@@ -98,7 +98,6 @@ public class ChoicenessFragment extends BaseFragment<ChoicenessPresenter> implem
 
     @Override
     public void refreshComplete() {
-
         xrv.stopRefresh();
     }
 

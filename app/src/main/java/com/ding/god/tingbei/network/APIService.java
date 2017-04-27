@@ -5,6 +5,8 @@ import com.ding.god.tingbei.model.bean.RadioCategoryBean;
 import com.ding.god.tingbei.model.bean.RadioGroupBean;
 import com.ding.god.tingbei.model.bean.RadioTypeBean;
 
+import java.util.List;
+
 import io.reactivex.Flowable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -19,10 +21,10 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("first-page/get-first-page")
-    Flowable<BaseResponse<ChoicenessBean>> postChoiceness(@Field("area_id") String area_id);//精选页面的数据
+    Flowable<BaseResponse<ChoicenessBean>> postChoiceness(@Field("area_id") String area_id);//精选页面的数据 2
 
     @GET("radio/getRadioCategory")
-    Flowable<BaseResponse<RadioCategoryBean>> getRadioCategory();                           //电台页面分类的数据
+    Flowable<BaseResponse<RadioCategoryBean>> getRadioCategory();                           //电台页面分类的数据 1
 
     @FormUrlEncoded
     @POST("radio/get-radio-group")
@@ -30,6 +32,6 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("program/getRadioType")
-    Flowable<BaseResponse<RadioTypeBean>> postRadioType(@Field("customerID") String customerID,
-                                                        @Field("device_id") String device_id);
+    Flowable<BaseResponse<List<RadioTypeBean>>> postRadioType(@Field("customerID") String customerID,   // 分类页面  2
+                                                             @Field("device_id") String device_id);
 }

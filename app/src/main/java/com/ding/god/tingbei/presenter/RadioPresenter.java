@@ -13,6 +13,9 @@ import com.ding.god.tingbei.network.RetrofitClient;
 import com.ding.god.tingbei.rx.RxTransfromer;
 import com.ding.god.tingbei.view.iview.IRadioView;
 
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+
 import static android.os.Build.VERSION_CODES.M;
 
 /**
@@ -31,7 +34,15 @@ public class RadioPresenter extends BasePresenter<RadioModel,IRadioView> {
                 .subscribe(new MConsumer<BaseResponse<RadioCategoryBean>>() {
                     @Override
                     public void response(BaseResponse<RadioCategoryBean> response) {
+                        mView.clear();
                         mView.addCategoryData(response.getData().getStyle());
+                        mView.refreshComplete();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        mView.toast("联网失败",0);
+                        mView.refreshComplete();
                     }
                 });
         mAPiService.postRadioGroup(APPConstants.AREA_ID)
@@ -40,8 +51,19 @@ public class RadioPresenter extends BasePresenter<RadioModel,IRadioView> {
                     @Override
                     public void response(BaseResponse<RadioGroupBean> response) {
                         mView.addRadioGroupData(response.getData());
+                        mView.refreshComplete();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        mView.toast("联网失败",0);
+                        mView.refreshComplete();
                     }
                 });
 
+    }
+
+    public void refresh() {
+        initData();
     }
 }

@@ -16,4 +16,8 @@ public interface IRadioView extends IBaseView {
 
     void addRadioGroupData(RadioGroupBean data);
 
+    void refreshComplete();
+
+    void clear();
+
 }
