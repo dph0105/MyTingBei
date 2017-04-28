@@ -1,29 +1,37 @@
 package com.ding.god.tingbei.view.activity;
 
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.ding.god.tingbei.base.BaseActivity;
 import com.ding.god.tingbei.base.BaseFragment;
 import com.ding.god.tingbei.R;
+import com.ding.god.tingbei.base.PlayBarBaseActivity;
 import com.ding.god.tingbei.customview.PlayBar;
 import com.ding.god.tingbei.presenter.MainPresenter;
+import com.ding.god.tingbei.rx.RxTransfromer;
 import com.ding.god.tingbei.view.adapter.HomePagerAdapter;
 import com.ding.god.tingbei.view.iview.IMainView;
+import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+
+import static android.os.Build.VERSION_CODES.M;
 
 
-public class MainActivity extends BaseActivity<MainPresenter> implements IMainView {
+public class HomeActivity extends PlayBarBaseActivity<MainPresenter> implements IMainView {
 
 
-    @BindView(R.id.playbar_activity_main)
-    PlayBar playbarActivityMain;
     @BindView(R.id.iv_search_activity_home)
     ImageView ivSearchActivityHome;
     @BindView(R.id.tablayout_activity_home)
@@ -58,7 +66,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
 
     @Override
     public void bindListener() {
-
+        ivSearchActivityHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext,SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -71,10 +85,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainVi
         vpActivityHome.setOffscreenPageLimit(3);
     }
 
-    //点击跳转到搜索页面
-    @Override
-    public void toSearchActivity() {
 
-    }
 
 }

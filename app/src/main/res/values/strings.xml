@@ -14,4 +14,6 @@
     <string name="mine_favorite">我的收藏</string>
     <string name="mine_recive_comment">收到评论</string>
     <string name="mine_personal_center">个人中心</string>
+    <string name="search_edit">搜索电台、专辑、节目名</string>
+    <string name="search_cancel">取消</string>
 </resources>

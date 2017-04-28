@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_play_bar_base"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ding.god.tingbei.base.PlayBarBaseActivity">
+    <com.ding.god.tingbei.customview.PlayBar
+        android:id="@+id/playbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <FrameLayout
+        android:id="@+id/view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/playbar"/>
+</RelativeLayout>

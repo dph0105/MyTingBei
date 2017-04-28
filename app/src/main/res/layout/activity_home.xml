@@ -4,13 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ding.god.tingbei.view.activity.MainActivity">
-
-
-    <com.ding.god.tingbei.customview.PlayBar
-        android:id="@+id/playbar_activity_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    tools:context="com.ding.god.tingbei.view.activity.HomeActivity">
 
     <RelativeLayout
         android:id="@+id/rl_activity_main_topbar"
@@ -46,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rl_activity_main_topbar"
-        android:layout_above="@id/playbar_activity_main"
         />
 
 </RelativeLayout>

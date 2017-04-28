@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseRVAdapter;
+import com.ding.god.tingbei.model.bean.RadioBean;
 import com.ding.god.tingbei.model.bean.RadioGroupBean;
 
 import butterknife.BindView;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/4/26.
  */
 
-public class RVRadioGroupItemAdapter extends BaseRVAdapter<RadioGroupBean.RadioBean, RecyclerView.ViewHolder> {
+public class RVRadioGroupItemAdapter extends BaseRVAdapter<RadioBean, RecyclerView.ViewHolder> {
 
     public static final int TYPE_RECOMMEND = 0;
     public static final int TYPE_RADIO = 1;
@@ -46,7 +47,7 @@ public class RVRadioGroupItemAdapter extends BaseRVAdapter<RadioGroupBean.RadioB
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        RadioGroupBean.RadioBean data = getDatas().get(position);
+        RadioBean data = getDatas().get(position);
         String s = "直播中:%s";
         switch (type){
             case TYPE_RECOMMEND:

@@ -11,10 +11,6 @@ import java.util.List;
 
 public interface IMainView extends IBaseView {
 
-    /**
-     * 点击搜索按钮跳转到搜索页面
-     */
-    void toSearchActivity();
 
     /**
      *
