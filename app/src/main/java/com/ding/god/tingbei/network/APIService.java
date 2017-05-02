@@ -9,6 +9,8 @@ import com.ding.god.tingbei.model.bean.RadioByTypeBean;
 import com.ding.god.tingbei.model.bean.RadioCategoryBean;
 import com.ding.god.tingbei.model.bean.RadioGroupBean;
 import com.ding.god.tingbei.model.bean.RadioTypeBean;
+import com.ding.god.tingbei.model.bean.SearchResultAllBean;
+import com.ding.god.tingbei.model.bean.SearchResultTypeBean;
 
 import java.util.List;
 
@@ -79,10 +81,16 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("search/getSearchList")
-    Flowable<BaseResponse<List<RadioByTypeBean>>> postSearchList(@Field("searchName") String searchName,  //分类的分类的具体 2
-                                                                  @Field("type") String type,   //根据4个标签,0,1,2,3
-                                                                  @Field("page") int page,
-                                                                  @Field("page_size") String page_size); //写默认10
+    Flowable<BaseResponse<List<SearchResultAllBean>>> postSearchList(@Field("searchName") String searchName,  //搜索的名字 2
+                                                               @Field("type") int type,   //根据4个标签,0,1,2,3
+                                                               @Field("page") int page,
+                                                               @Field("page_size") int page_size); //写默认10
 
+    @FormUrlEncoded
+    @POST("search/getSearchList")
+    Flowable<BaseResponse<List<SearchResultTypeBean>>> postSearchTypeList(@Field("searchName") String searchName,  //搜索的名字 2
+                                                                          @Field("type") int type,   //根据4个标签,1,2,3
+                                                                          @Field("page") int page,
+                                                                          @Field("page_size") int page_size); //写默认10
 
 }

@@ -16,4 +16,7 @@
     <string name="mine_personal_center">个人中心</string>
     <string name="search_edit">搜索电台、专辑、节目名</string>
     <string name="search_cancel">取消</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
