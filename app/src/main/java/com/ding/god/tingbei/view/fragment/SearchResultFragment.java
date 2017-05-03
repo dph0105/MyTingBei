@@ -53,7 +53,8 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
 
     @Override
     public void initView() {
-       presenter.setVPAdapter();
+        presenter.setVPAdapter();
+        vpFragmentSearchResult.setOffscreenPageLimit(4);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
 
     @Override
     public void setVPAdapter(List<BaseFragment> fragments, String[] tabTitle) {
-        VPSearchResultAdapter adapter = new VPSearchResultAdapter(getFragmentManager(),fragments,tabTitle);
+        VPSearchResultAdapter adapter = new VPSearchResultAdapter(getChildFragmentManager(),fragments,tabTitle);
         vpFragmentSearchResult.setAdapter(adapter);
         tablayoutFragmentSearchResult.setupWithViewPager(vpFragmentSearchResult);
     }
