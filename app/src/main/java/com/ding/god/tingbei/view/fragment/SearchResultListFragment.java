@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseFragment;
 import com.ding.god.tingbei.model.bean.SearchResultAllBean;
 import com.ding.god.tingbei.model.bean.SearchResultTypeBean;
 import com.ding.god.tingbei.presenter.SearchResultListPresenter;
+import com.ding.god.tingbei.rx.RxBus;
+import com.ding.god.tingbei.rx.RxTransfromer;
+import com.ding.god.tingbei.rx.event.SearchEvent;
 import com.ding.god.tingbei.view.adapter.RVSearchAllAdapter;
 import com.ding.god.tingbei.view.adapter.RVSearchTypeAdatper;
 import com.ding.god.tingbei.view.iview.ISearchResultListView;
@@ -18,6 +22,10 @@ import com.ding.god.tingbei.view.iview.ISearchResultListView;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+
+import static android.R.attr.type;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +35,9 @@ public class SearchResultListFragment extends BaseFragment<SearchResultListPrese
 
     @BindView(R.id.rv_fragment_search_list)
     RecyclerView rvFragmentSearchList;
+
+    private int type;
+    private String searchName;
 
     private RVSearchAllAdapter allAdapter;
     private RVSearchTypeAdatper typeAdatper;
@@ -69,6 +80,16 @@ public class SearchResultListFragment extends BaseFragment<SearchResultListPrese
 
     @Override
     public void initData() {
+        RxBus.getRxBus().toFlowable(SearchEvent.class)
+                .compose(RxTransfromer.<SearchEvent>observeOnToMain())
+                .subscribe(new Consumer<SearchEvent>() {
+                    @Override
+                    public void accept(@NonNull SearchEvent searchEvent) throws Exception {
+                        searchName = searchEvent.getSearchName();
+                        presenter.initData(searchEvent.getSearchName(),type);
+                        Log.d("searchName",searchName);
+                    }
+                });
 
     }
 
@@ -79,11 +100,13 @@ public class SearchResultListFragment extends BaseFragment<SearchResultListPrese
 
     @Override
     public void addData(List<SearchResultAllBean> datas) {
+        allAdapter.clearAll();
         allAdapter.addAll(datas);
     }
 
     @Override
     public void addTypeData(List<SearchResultTypeBean> datas) {
+        typeAdatper.clearAll();
         typeAdatper.addAll(datas);
     }
 

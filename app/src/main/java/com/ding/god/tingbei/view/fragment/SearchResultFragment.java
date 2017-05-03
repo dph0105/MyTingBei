@@ -48,6 +48,7 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     @Override
     protected void initPresenter() {
         presenter = new SearchResultPresenter(mContext, this);
+        presenter.init();
     }
 
     @Override
@@ -70,5 +71,6 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
     public void setVPAdapter(List<BaseFragment> fragments, String[] tabTitle) {
         VPSearchResultAdapter adapter = new VPSearchResultAdapter(getFragmentManager(),fragments,tabTitle);
         vpFragmentSearchResult.setAdapter(adapter);
+        tablayoutFragmentSearchResult.setupWithViewPager(vpFragmentSearchResult);
     }
 }

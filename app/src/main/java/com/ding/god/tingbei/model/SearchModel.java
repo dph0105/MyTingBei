@@ -1,11 +1,11 @@
 package com.ding.god.tingbei.model;
 
-import android.content.Context;
-
+import com.ding.god.tingbei.MyApplication;
 import com.ding.god.tingbei.base.BaseModel;
-import com.ding.god.tingbei.util.cacheutil.CacheUtil;
+import com.ding.god.tingbei.dbbean.SearchHistory;
+import com.ding.god.tingbei.gen.SearchHistoryDao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/28.
@@ -13,17 +13,19 @@ import java.util.ArrayList;
 
 public class SearchModel extends BaseModel {
 
-    private static final String SEARCH_HISTORY = "searchHistory";
+    private SearchHistoryDao mSearchHistoryDao;
 
-    public ArrayList<String> getSearchHistory(Context mContext){
-        ArrayList<String> strings = CacheUtil.getStringArray(mContext, SEARCH_HISTORY);
-        return strings;
+    public SearchModel() {
+        mSearchHistoryDao = MyApplication.getInstance().getDaoSession().getSearchHistoryDao();
     }
 
-    public void saveSearchHistory(Context mContext,String searchName){
-        ArrayList<String> strings = CacheUtil.getStringArray(mContext, SEARCH_HISTORY);
-        strings.add(searchName);
-        CacheUtil.postStringArray(mContext,SEARCH_HISTORY,strings);
+    public List<SearchHistory> getSearchHistory(){
+        List<SearchHistory> searchHistories = mSearchHistoryDao.loadAll();
+        return searchHistories;
+    }
+
+    public void saveSearchHistory(SearchHistory searchHistory){
+        mSearchHistoryDao.insert(searchHistory);
     }
 
 }
