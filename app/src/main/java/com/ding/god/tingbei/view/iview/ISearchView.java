@@ -9,6 +9,6 @@ import com.ding.god.tingbei.base.IBaseView;
 public interface ISearchView extends IBaseView {
     void showNothing();
     void showHistory();
-    void showResult();
+    void showResult(String searchName);
 
 }

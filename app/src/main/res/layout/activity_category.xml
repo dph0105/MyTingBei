@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_category"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ding.god.tingbei.view.activity.CategoryActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:src="@mipmap/back"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"/>
+        <TextView
+            android:id="@+id/tv_category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white">
+        <ImageView
+            android:id="@+id/iv_category_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/category_down"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tl_activity_actegory"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_toStartOf="@id/iv_category_down"
+            />
+    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_activity_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0.5dp"/>
+
+
+</LinearLayout>

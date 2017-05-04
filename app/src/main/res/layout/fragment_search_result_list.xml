@@ -3,9 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ding.god.tingbei.view.fragment.SearchResultListFragment">
+    <com.andview.refreshview.XRefreshView
+        android:id="@+id/xrv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fragment_search_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+</com.andview.refreshview.XRefreshView>
+
+        <RelativeLayout
+            android:id="@+id/rl_nothing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/search_nothing"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="150dp"/>
+        </RelativeLayout>
+
 
 </FrameLayout>

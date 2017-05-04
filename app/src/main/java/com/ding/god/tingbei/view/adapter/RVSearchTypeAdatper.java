@@ -64,13 +64,13 @@ public class RVSearchTypeAdatper extends BaseRVAdapter<SearchResultTypeBean,RVSe
                 holder.tvRadioName.setText(data.getRadio_name());
                 holder.tvRadioProgramInfo.setText("暂无节目信息");
                 holder.tvRadioListenNum.setText(data.getRadio_number());
-                mImageUtil.loadURLImage(data.getAlbum_logo(),holder.ivRadioIcon);
+                mImageUtil.loadURLImage(data.getRadio_img_url(),holder.ivRadioIcon);
                 break;
             case 3:
                 holder.tvRadioName.setText(data.getProgram_name());
                 holder.tvRadioProgramInfo.setText(data.getProgram_describe());
                 holder.tvRadioListenNum.setText(data.getProgram_date());
-                mImageUtil.loadURLImage(data.getAlbum_logo(),holder.ivRadioIcon);
+                mImageUtil.loadURLImage(data.getProgram_img_url(),holder.ivRadioIcon);
                 break;
         }
     }

@@ -1,0 +1,17 @@
+<com.andview.refreshview.XRefreshView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/xrv"
+    tools:context="com.ding.god.tingbei.view.fragment.CategoryDetailFragment"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
+    android:paddingTop="10dp">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_fragment_category_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        />
+
+</com.andview.refreshview.XRefreshView>

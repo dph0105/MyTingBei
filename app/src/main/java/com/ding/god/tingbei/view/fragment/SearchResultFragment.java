@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseFragment;
 import com.ding.god.tingbei.presenter.SearchResultPresenter;
+import com.ding.god.tingbei.rx.RxBus;
+import com.ding.god.tingbei.rx.event.SearchEvent;
 import com.ding.god.tingbei.view.adapter.VPSearchResultAdapter;
 import com.ding.god.tingbei.view.iview.ISearchResultView;
 
@@ -41,7 +43,7 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
 
 
     @Override
-    protected int getLayoutId() {
+    protected int getLayoutId()  {
         return R.layout.fragment_search_result;
     }
 
@@ -53,8 +55,8 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
 
     @Override
     public void initView() {
-        presenter.setVPAdapter();
         vpFragmentSearchResult.setOffscreenPageLimit(4);
+        presenter.setVPAdapter();
     }
 
     @Override
@@ -73,5 +75,6 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
         VPSearchResultAdapter adapter = new VPSearchResultAdapter(getChildFragmentManager(),fragments,tabTitle);
         vpFragmentSearchResult.setAdapter(adapter);
         tablayoutFragmentSearchResult.setupWithViewPager(vpFragmentSearchResult);
+
     }
 }

@@ -245,7 +245,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         if (layoutManager instanceof GridLayoutManager) {
             int orientation = ((GridLayoutManager) layoutManager)
                     .getOrientation();
-            if (orientation == StaggeredGridLayoutManager.VERTICAL) {
+            if (orientation == GridLayoutManager.VERTICAL) {
                 // 如果是最后一列，则不需要绘制右边
                 if ((pos + 1) % spanCount == 0)
                     return true;
@@ -280,12 +280,12 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             childCount = childCount - childCount % spanCount;
             orientation = ((GridLayoutManager) layoutManager)
                     .getOrientation();
-            if (orientation == StaggeredGridLayoutManager.VERTICAL) {
+            if (orientation == GridLayoutManager.VERTICAL) {
                 // 如果是最后一行，则不需要绘制底部
                 childCount = childCount - childCount % spanCount;
                 if (pos >= childCount)
                     return true;
-            } else {// StaggeredGridLayoutManager 横向滚动
+            } else {// GridLayoutManager 横向滚动
                 // 如果是最后一行，则不需要绘制底部
                 if ((pos + 1) % spanCount == 0)
                     return true;

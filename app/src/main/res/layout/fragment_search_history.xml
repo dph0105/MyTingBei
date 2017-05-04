@@ -1,13 +1,39 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ding.god.tingbei.view.fragment.SearchHistoryFragment">
+    tools:context="com.ding.god.tingbei.view.fragment.SearchHistoryFragment"
+    android:background="@color/white"
+    android:clickable="true">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_history"
+        android:layout_margin="10dp"
+        android:textSize="14sp"
+        android:textColor="@color/text_gray"
+        />
+    <TextView
+        android:id="@+id/tv_clear_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/red_indicator"
+        android:text="@string/search_history_clear"
+        android:textSize="14sp"
+        android:drawableStart="@mipmap/empty"
+        android:gravity="center"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_fragment_search_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="historyfragment" />
+        android:layout_below="@id/tv_clear_history"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
 
-</FrameLayout>
+</RelativeLayout>
