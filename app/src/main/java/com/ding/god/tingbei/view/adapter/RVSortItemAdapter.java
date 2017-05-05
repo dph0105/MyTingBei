@@ -3,6 +3,7 @@ package com.ding.god.tingbei.view.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -25,8 +26,13 @@ import static android.R.attr.data;
 
 public class RVSortItemAdapter extends BaseRVAdapter<RadioTypeBean.SubCategoryBean,RVSortItemAdapter.SortViewHolder> {
 
-    public RVSortItemAdapter(Context context) {
+    private String parent_name;
+    private String parent_id;
+
+    public RVSortItemAdapter(Context context,String parent_name,String parent_id) {
         super(context);
+        this.parent_name = parent_name;
+        this.parent_id = parent_id;
     }
 
     @Override
@@ -37,8 +43,21 @@ public class RVSortItemAdapter extends BaseRVAdapter<RadioTypeBean.SubCategoryBe
 
     @Override
     public void onBindViewHolder(SortViewHolder holder, final int position) {
-        holder.tvCategory.setText(getDatas().get(position).getCategory_name());
+        final RadioTypeBean.SubCategoryBean data = getDatas().get(position);
+        holder.tvCategory.setText(data.getCategory_name());
         holder.tvCategory.setTextColor(mContext.getResources().getColor(R.color.text_gray));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, CategoryActivity.class);
+                intent.putExtra("category_id", parent_id);
+                intent.putExtra("category_name", parent_name);
+                intent.putExtra("position",position+1);
+                Log.d("category","id: "+ data.getCategory_id()+" name: "+ data.getCategory_name());
+                mContext.startActivity(intent);
+            }
+        });
+
     }
 
     static class SortViewHolder extends RecyclerView.ViewHolder{

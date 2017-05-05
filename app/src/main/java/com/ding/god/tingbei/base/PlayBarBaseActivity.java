@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.customview.PlayBar;
+import com.ding.god.tingbei.rx.RxBus;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.BindView;
@@ -48,6 +49,15 @@ public abstract class PlayBarBaseActivity<P extends BasePresenter> extends RxApp
             }
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        presenter.onDestroy();
+        super.onDestroy();
+        ButterKnife.bind(this).unbind();
+        RxBus.getRxBus().removeAllStickyEvents();
+    }
+
 
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -46,20 +47,12 @@ public class RVSortAdapter extends BaseRVAdapter<RadioTypeBean, RVSortAdapter.So
         mImageUtil.loadURLImage(data.getCategory_image(), holder.ivCategoryIcon);
         holder.tvCategoryName.setText(data.getCategory_name());
         holder.rvFragmentSortRvitem.setLayoutManager(new GridLayoutManager(mContext, 4));
-        RVSortItemAdapter adapter = new RVSortItemAdapter(mContext);
+        RVSortItemAdapter adapter = new RVSortItemAdapter(mContext,data.getCategory_name(),data.getCategory_id());
         holder.rvFragmentSortRvitem.setAdapter(adapter);
         adapter.addAll(data.getSub_category());
         holder.rlMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toCategoryActivity(data);
-            }
-        });
-
-        holder.rvFragmentSortRvitem.addOnItemTouchListener(new OnRecylerViewItemClickListener(holder.rvFragmentSortRvitem){
-            @Override
-            public void onItemClick(RecyclerView.ViewHolder vh) {
-                super.onItemClick(vh);
                 toCategoryActivity(data);
             }
         });
@@ -69,6 +62,7 @@ public class RVSortAdapter extends BaseRVAdapter<RadioTypeBean, RVSortAdapter.So
         Intent intent = new Intent(mContext, CategoryActivity.class);
         intent.putExtra("category_id",data.getCategory_id());
         intent.putExtra("category_name",data.getCategory_name());
+        Log.d("category","id: "+data.getCategory_id()+" name: "+data.getCategory_name());
         mContext.startActivity(intent);
     }
 

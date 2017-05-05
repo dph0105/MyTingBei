@@ -98,7 +98,7 @@ public class SearchResultListFragment extends BaseFragment<SearchResultListPrese
 
     @Override
     public void initData() {
-        RxBus.getRxBus().toFlowable(SearchEvent.class)
+        RxBus.getRxBus().toFlowableSticky(SearchEvent.class)
                 .compose(RxTransfromer.<SearchEvent>observeOnToMain())
                 .subscribe(new Consumer<SearchEvent>() {
                     @Override
@@ -107,6 +107,7 @@ public class SearchResultListFragment extends BaseFragment<SearchResultListPrese
                         presenter.initData(searchEvent.getSearchName(), type);
                     }
                 });
+
     }
 
     @Override
@@ -136,7 +137,5 @@ public class SearchResultListFragment extends BaseFragment<SearchResultListPrese
             typeAdatper.addAll(datas);
         }
     }
-
-
 
 }

@@ -1,7 +1,10 @@
 package com.ding.god.tingbei.base;
 
 
+import android.annotation.TargetApi;
+import android.app.Fragment;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +16,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 import butterknife.ButterKnife;
 
 
-public abstract class BaseFragment<P extends BasePresenter> extends RxFragment implements IBaseView{
+public abstract class BaseFragment<P extends BasePresenter> extends android.support.v4.app.Fragment implements IBaseView{
 
     protected P presenter;
     protected Context mContext;
@@ -38,14 +41,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends RxFragment i
      */
     protected abstract void initPresenter();
 
-
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.bind(getActivity()).unbind();
-    }
 
     @Override
     public void onDestroy() {

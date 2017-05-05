@@ -35,7 +35,6 @@ public class CategoryPresenter extends BasePresenter<CategoryModel,ICategoryView
                     @Override
                     public void response(BaseResponse<List<RadioTypeBean>> response) {
                         mView.setAdapter(response.getData());
-                        Log.d("category","111111");
                     }
                 }, new Consumer<Throwable>() {
                     @Override

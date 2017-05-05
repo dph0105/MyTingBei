@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.ding.god.tingbei.view.activity.CategoryActivity">
     <RelativeLayout
+        android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView

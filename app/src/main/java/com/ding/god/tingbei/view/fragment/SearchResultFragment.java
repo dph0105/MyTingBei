@@ -55,7 +55,6 @@ public class SearchResultFragment extends BaseFragment<SearchResultPresenter> im
 
     @Override
     public void initView() {
-        vpFragmentSearchResult.setOffscreenPageLimit(4);
         presenter.setVPAdapter();
     }
 

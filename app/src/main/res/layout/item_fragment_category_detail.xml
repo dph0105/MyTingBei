@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="160dp"
-    android:layout_height="225dp"
+    android:layout_height="wrap_content"
     android:background="@color/bg_gray_f5f4f5">
     <ImageView
         android:id="@+id/iv_album_logo"
@@ -28,6 +28,7 @@
         android:textColor="@color/white"
         android:layout_below="@id/tv_album_name"
         android:layout_alignStart="@id/tv_album_name"
+        android:layout_marginBottom="10dp"
         />
     <TextView
         android:id="@+id/tv_app_play_amount"

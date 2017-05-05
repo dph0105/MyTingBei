@@ -72,7 +72,7 @@ public class CategoryDetailFragment extends BaseFragment<CategoryDetailPresenter
 
         xrv.setPullLoadEnable(true);
 
-        rvFragmentCategoryDetail.setLayoutManager(new GridLayoutManager(mContext, 2, GridLayoutManager.VERTICAL, false));
+        rvFragmentCategoryDetail.setLayoutManager(new GridLayoutManager(mContext, 2, RecyclerView.VERTICAL, false));
         int dividerHeight = DensityUtil.dp2px(mContext, 10);
         rvFragmentCategoryDetail.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.BOTH_SET, dividerHeight, getResources().getColor(R.color.white)));
         rvCategoryDetailAdapter = new RVCategoryDetailAdapter(mContext);

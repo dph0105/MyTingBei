@@ -86,7 +86,7 @@ public class SearchActivity extends PlayBarBaseActivity<SearchPresenter> impleme
                         presenter.saveSearchHistory(searchHistory);
                         showResult(etSearch.getText().toString());
                         SearchEvent searchEvent = new SearchEvent(etSearch.getText().toString());
-                        RxBus.getRxBus().post(searchEvent);
+                        RxBus.getRxBus().postSticky(searchEvent);
                     }
                     InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                     imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
@@ -112,7 +112,6 @@ public class SearchActivity extends PlayBarBaseActivity<SearchPresenter> impleme
     @Override
     public void showHistory() {
         llNothing.setVisibility(View.GONE);
-
         fm.beginTransaction().show(historyFragment).commit();
         //fm.beginTransaction().hide(resultFragment).commit();
     }
