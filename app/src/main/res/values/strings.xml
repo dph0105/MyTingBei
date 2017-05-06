@@ -22,4 +22,10 @@
     <string name="search_history">搜索历史</string>
     <string name="search_history_clear">清空历史</string>
     <string name="category_popup_down">请选择一个分类</string>
+    <string name="album_title">专辑详情</string>
+    <string name="collection">收藏</string>
+    <string name="download">批量下载</string>
+    <string name="content_introduction">内容简介</string>
+    <string name="order">排序</string>
+    <string name="select">选集</string>
 </resources>

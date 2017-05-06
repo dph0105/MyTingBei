@@ -1,6 +1,7 @@
 package com.ding.god.tingbei.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseRVAdapter;
 import com.ding.god.tingbei.model.bean.RadioByTypeBean;
+import com.ding.god.tingbei.view.activity.AlbumActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,11 +34,20 @@ public class RVCategoryDetailAdapter extends BaseRVAdapter<RadioByTypeBean,RVCat
 
     @Override
     public void onBindViewHolder(CategoryDetailViewHolder holder, int position) {
-        RadioByTypeBean data = getDatas().get(position);
+        final RadioByTypeBean data = getDatas().get(position);
         holder.tvAlbumName.setText(data.getAlbum_name());
         holder.tvCategoryTip.setText(data.getCategory_tip());
         holder.tvAppPlayAmount.setText(data.getApp_play_amount());
         mImageUtil.loadURLImage(data.getAlbum_logo(),holder.ivAlbumLogo);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, AlbumActivity.class);
+                intent.putExtra("album_id",data.getAlbum_id());
+                intent.putExtra("album_type",data.getAlbum_type());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     static class CategoryDetailViewHolder extends RecyclerView.ViewHolder {

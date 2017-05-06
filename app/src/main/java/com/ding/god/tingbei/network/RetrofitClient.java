@@ -14,8 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     //基础接口
-    private static final String API_BASE_URL = "http://apinew2.tinberfm.cn/index.php/";
-    private static final String API_BASE_OLD_URL = "http://apinew.tinberfm.com/interface/";
+    private static final String API_BASE_URL = "http://apinew2.tinberfm.cn/index.php/";       //1
+    private static final String API_BASE_OLD_URL = "http://apinew.tinberfm.com/interface/";  //2
 
     private Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(API_BASE_URL)

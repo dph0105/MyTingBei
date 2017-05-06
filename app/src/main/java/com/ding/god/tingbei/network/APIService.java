@@ -1,8 +1,10 @@
 package com.ding.god.tingbei.network;
 
+import com.ding.god.tingbei.model.bean.AlbumInfoBean;
 import com.ding.god.tingbei.model.bean.ChoicenessBean;
 import com.ding.god.tingbei.model.bean.LoadingImgBean;
 import com.ding.god.tingbei.model.bean.LocalRadioBean;
+import com.ding.god.tingbei.model.bean.ProgramListBean;
 import com.ding.god.tingbei.model.bean.RadioArea;
 import com.ding.god.tingbei.model.bean.RadioBean;
 import com.ding.god.tingbei.model.bean.RadioByTypeBean;
@@ -92,5 +94,25 @@ public interface APIService {
                                                                           @Field("type") int type,   //根据4个标签,1,2,3
                                                                           @Field("page") int page,
                                                                           @Field("page_size") int page_size); //写默认10
+
+
+    @FormUrlEncoded
+    @POST("album/getAlbumInfo")
+    Flowable<BaseResponse<AlbumInfoBean>> postAlbumInfo(@Field("album_id") String album_id,         //专辑详情的专辑信息
+                                                        @Field("album_type") String album_type,
+                                                        @Field("program_id") String program_id);  //???暂时没有填
+
+    @FormUrlEncoded
+    @POST("program/getOverProgramt")
+    Flowable<BaseResponse<List<ProgramListBean>>> postProgramList(@Field("program_id") String program_id, //""         //专辑详情的节目列表 2
+                                                                  @Field("program_type") String program_type,   //
+                                                                  @Field("program_list_id") String program_list_id,
+                                                                  @Field("page") int page,
+                                                                  @Field("order") int order,
+                                                                  @Field("customerID") String customerID,
+                                                                  @Field("device_id") String device_id   ); //写默认10
+
+
+
 
 }
