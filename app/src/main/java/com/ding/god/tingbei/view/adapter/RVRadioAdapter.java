@@ -2,14 +2,17 @@ package com.ding.god.tingbei.view.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ding.god.tingbei.APPConstants;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseRVAdapter;
 import com.ding.god.tingbei.customview.CustomRV;
@@ -17,6 +20,7 @@ import com.ding.god.tingbei.customview.DividerItemDecoration;
 import com.ding.god.tingbei.model.bean.RadioCategoryBean;
 import com.ding.god.tingbei.model.bean.RadioGroupBean;
 import com.ding.god.tingbei.util.DensityUtil;
+import com.ding.god.tingbei.view.activity.RadioListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +32,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/4/26.
  */
 
-public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.ViewHolder> {
+public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.ViewHolder>{
 
     private static final int TYPE_RECOMMENT = 0;
     private static final int TYPE_LOCAL_MUSIC = 1;
@@ -103,7 +107,7 @@ public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.V
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (getItemViewType(position)==TYPE_CATEGORY){
             CategoryViewHolder categoryViewHolder = (CategoryViewHolder) holder;
             //设置电台分类的recyclerview
@@ -116,9 +120,39 @@ public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.V
             }
             categoryViewHolder.rvRadioCategory.setAdapter(categoryAdapter);
             categoryAdapter.addAll(categoryDatas);
+
+            categoryViewHolder.tvRadioLocal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    toRadioListActivity(1,null,"浙江");
+                }
+            });
+            categoryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    toRadioListActivity(0,APPConstants.CATEGORY_ID_COUNTRY,"全国电台");
+                }
+            });
+            categoryViewHolder.tvRadioNet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    toRadioListActivity(0, APPConstants.CATEGORY_ID_NET,"网络台");
+                }
+            });
         }else {
             RadioGroupViewHolder groupViewHolder = (RadioGroupViewHolder) holder;
             groupViewHolder.tvItemProgramTitle.setText(getItemTitle(getItemViewType(position)));
+            groupViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (getItemViewType(position)){
+                        case TYPE_RECOMMENT:break;
+                        case TYPE_LOCAL_MUSIC:toRadioListActivity(1,null,"浙江");break;
+                        case TYPE_MUSIC_RADIO:toRadioListActivity(0,APPConstants.CATEGORY_ID_MUSIC,"音乐电台");break;
+                        case TYPE_COUNTRY_RADIO:toRadioListActivity(0,APPConstants.CATEGORY_ID_COUNTRY,"全国电台");break;
+                    }
+                }
+            });
             if (getDatas().size() != 0) {
                 RadioGroupBean data = getDatas().get(0);
                 switch (getItemViewType(position)) {
@@ -143,6 +177,7 @@ public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.V
                         groupViewHolder.rvItemChoicenessProgram.setLayoutManager(new LinearLayoutManager(mContext));
                         groupViewHolder.rvItemChoicenessProgram.setAdapter(adapter2);
                         adapter2.addAll(data.getMusic_radio());
+
                     case TYPE_COUNTRY_RADIO:
                         RVRadioGroupItemAdapter adapter3 = new RVRadioGroupItemAdapter(mContext, RVRadioGroupItemAdapter.TYPE_RADIO);
                         groupViewHolder.rvItemChoicenessProgram.setLayoutManager(new LinearLayoutManager(mContext));
@@ -153,6 +188,16 @@ public class RVRadioAdapter extends BaseRVAdapter<RadioGroupBean, RecyclerView.V
             }
         }
     }
+
+    public void toRadioListActivity(int localOrCountry,String category_id,String category_name){
+        Intent intent = new Intent(mContext, RadioListActivity.class);
+        intent.putExtra("localOrCountry",localOrCountry);
+        intent.putExtra("category_id",category_id);
+        intent.putExtra("category_name",category_name);
+        mContext.startActivity(intent);
+    }
+
+
 
     static class RadioGroupViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_item_program_title)

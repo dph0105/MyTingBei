@@ -11,4 +11,5 @@ public class APPConstants {
     public static final String  DEVICE_ID = "866963020911139";
     public static final String CATEGORY_ID_COUNTRY = "Goqor7TJvd2S9GX"; //国家台
     public static final String CATEGORY_ID_NET = "aXG7c1FzrDu3YSj"; //网络台
+    public static final String CATEGORY_ID_MUSIC = "fE2pj5YIQb4scJ4"; //网络台
 }

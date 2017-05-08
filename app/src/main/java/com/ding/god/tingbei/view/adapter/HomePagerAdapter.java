@@ -18,11 +18,9 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
 
     private List<BaseFragment> fragments;
     private String[] tabTitle;
-    private LayoutInflater inflater;
 
-    public HomePagerAdapter(Context context, FragmentManager fm, List<BaseFragment> fragments, String[] tabTitle) {
+    public HomePagerAdapter(FragmentManager fm, List<BaseFragment> fragments, String[] tabTitle) {
         super(fm);
-        inflater = LayoutInflater.from(context);
         this.fragments = fragments;
         this.tabTitle = tabTitle;
     }

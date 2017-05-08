@@ -34,7 +34,7 @@ public class ProgramListPresenter extends BasePresenter<ProgramListModel,IProgra
                 .subscribe(new MConsumer<BaseResponse<List<ProgramListBean>>>() {
                     @Override
                     public void response(BaseResponse<List<ProgramListBean>> response) {
-
+                        mView.addData(response.getData());
                     }
                 }, new Consumer<Throwable>() {
                     @Override

@@ -10,6 +10,7 @@ import com.ding.god.tingbei.model.bean.RadioBean;
 import com.ding.god.tingbei.model.bean.RadioByTypeBean;
 import com.ding.god.tingbei.model.bean.RadioCategoryBean;
 import com.ding.god.tingbei.model.bean.RadioGroupBean;
+import com.ding.god.tingbei.model.bean.RadioInfoBean;
 import com.ding.god.tingbei.model.bean.RadioTypeBean;
 import com.ding.god.tingbei.model.bean.SearchResultAllBean;
 import com.ding.god.tingbei.model.bean.SearchResultTypeBean;
@@ -108,10 +109,23 @@ public interface APIService {
                                                                   @Field("program_type") String program_type,   //
                                                                   @Field("program_list_id") String program_list_id,
                                                                   @Field("page") int page,
-                                                                  @Field("order") int order,
+                                                                  @Field("order") int order,    //默认  1
                                                                   @Field("customerID") String customerID,
-                                                                  @Field("device_id") String device_id   ); //写默认10
+                                                                  @Field("device_id") String device_id   );
 
+
+    @FormUrlEncoded
+    @POST("live/getRadioInfo")
+    Flowable<BaseResponse<RadioInfoBean>> postRadioInfo(@Field("radio_id") String radio_id,         //电台播放页信息
+                                                        @Field("customer_id") String customer_id,  //kong
+                                                        @Field("equipment_id") String equipment_id);
+
+    @FormUrlEncoded
+    @POST("programComment/getProgramCommentListByAlbumId")
+    Flowable<BaseResponse<AlbumInfoBean>> postProgramComment(@Field("page") int page,         //pinglun
+                                                        @Field("radio_id") String radio_id,  //kong
+                                                        @Field("album_id") String album_id,
+                                                        @Field("page_size") int page_size);
 
 
 

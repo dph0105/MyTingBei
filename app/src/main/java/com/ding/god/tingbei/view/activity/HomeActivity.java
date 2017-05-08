@@ -78,7 +78,7 @@ public class HomeActivity extends PlayBarBaseActivity<MainPresenter> implements 
     @Override
     public void setVPAdapter(List<BaseFragment> fragments, String[] tabTitle) {
         //初始化ViewPager的适配器
-        HomePagerAdapter homePagerAdapter = new HomePagerAdapter(this, getSupportFragmentManager(), fragments, tabTitle);
+        HomePagerAdapter homePagerAdapter = new HomePagerAdapter(getSupportFragmentManager(), fragments, tabTitle);
         vpActivityHome.setAdapter(homePagerAdapter);
         //TabLayout绑定ViewPager
         tablayoutActivityHome.setupWithViewPager(vpActivityHome);

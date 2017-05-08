@@ -2,6 +2,7 @@ package com.ding.god.tingbei.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -11,10 +12,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ding.god.tingbei.R;
+import com.ding.god.tingbei.base.BaseFragment;
 import com.ding.god.tingbei.base.PlayBarBaseActivity;
 import com.ding.god.tingbei.model.bean.AlbumInfoBean;
 import com.ding.god.tingbei.presenter.AlbumPresenter;
+import com.ding.god.tingbei.view.adapter.VPAlbumAdapter;
 import com.ding.god.tingbei.view.iview.IAlbumView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,7 +51,7 @@ public class AlbumActivity extends PlayBarBaseActivity<AlbumPresenter> implement
     @BindView(R.id.vp_activity_album)
     ViewPager vpActivityAlbum;
     @BindView(R.id.activity_album)
-    LinearLayout activityAlbum;
+    CoordinatorLayout activityAlbum;
 
     @Override
     protected int getLayoutID() {
@@ -71,6 +76,7 @@ public class AlbumActivity extends PlayBarBaseActivity<AlbumPresenter> implement
         String album_id = intent.getStringExtra("album_id");
         String album_type = intent.getStringExtra("album_type");
         presenter.initData(album_id, album_type, "");
+        presenter.setVPAdapter();
     }
 
     @Override
@@ -85,4 +91,13 @@ public class AlbumActivity extends PlayBarBaseActivity<AlbumPresenter> implement
         tvAlbumHost.setText("主播:"+data.getAlbum_host()==""?"暂无":data.getAlbum_name());
         tvAlbumCategoryTip.setText("分类:"+data.getCategory_tip());
     }
+
+    @Override
+    public void setVPAdapter(List<BaseFragment> fragments, String[] tabTitle) {
+        VPAlbumAdapter adapter = new VPAlbumAdapter(getSupportFragmentManager(),fragments,tabTitle);
+        vpActivityAlbum.setAdapter(adapter);
+        tlActivityAlbum.setupWithViewPager(vpActivityAlbum);
+    }
+
+
 }

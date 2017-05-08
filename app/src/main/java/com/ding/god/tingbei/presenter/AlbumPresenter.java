@@ -28,12 +28,14 @@ public class AlbumPresenter extends BasePresenter<AlbumModel,IAlbumView> {
     }
 
     public void initData(final String album_id, final String album_type, final String program_id){
+        mModel.setData(album_id,album_type,program_id);
         mAPIService2.postAlbumInfo(album_id,album_type,program_id)
                 .compose(RxTransfromer.<BaseResponse<AlbumInfoBean>>observeOnToMain())
                 .subscribe(new MConsumer<BaseResponse<AlbumInfoBean>>() {
                     @Override
                     public void response(BaseResponse<AlbumInfoBean> response) {
                         mView.initAlbumInfo(response.getData());
+
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -44,7 +46,7 @@ public class AlbumPresenter extends BasePresenter<AlbumModel,IAlbumView> {
 
     }
 
-    public void initProgramListData(String program_id,String program_type,String program_list_id,int page,int order){
-
+    public void setVPAdapter(){
+        mView.setVPAdapter(mModel.getFragments(),mModel.getTabTitle());
     }
 }

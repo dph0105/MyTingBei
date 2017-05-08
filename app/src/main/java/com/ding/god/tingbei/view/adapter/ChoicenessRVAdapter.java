@@ -1,6 +1,7 @@
 package com.ding.god.tingbei.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +18,9 @@ import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseRVAdapter;
 import com.ding.god.tingbei.customview.CustomRV;
 import com.ding.god.tingbei.model.bean.ChoicenessBean;
+import com.ding.god.tingbei.model.bean.RadioTypeBean;
 import com.ding.god.tingbei.util.DensityUtil;
+import com.ding.god.tingbei.view.activity.CategoryActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +120,7 @@ public class ChoicenessRVAdapter extends BaseRVAdapter<ChoicenessBean, Choicenes
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         if (getDatas().size() != 0) {
-            ChoicenessBean data = getDatas().get(0);
+            final ChoicenessBean data = getDatas().get(0);
             Log.d("data", data.toString());
             switch (getItemViewType(position)) {
                 case TYPE_HEAD://头
@@ -207,12 +210,21 @@ public class ChoicenessRVAdapter extends BaseRVAdapter<ChoicenessBean, Choicenes
                 case TYPE_BODY://普通的item
                     BodyViewHolder bodyHolder = (BodyViewHolder) holder;
                     int listPositon = getListPosition(position);
-                    ChoicenessBean.ProgramRecommendBean programData = data.getProgram_recommend().get(listPositon);
+                    final ChoicenessBean.ProgramRecommendBean programData = data.getProgram_recommend().get(listPositon);
                     bodyHolder.tvItemProgramTitle.setText(programData.getCategory_name());
                     bodyHolder.rvItemChoicenessProgram.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
                     RVChoicenessItemProgramAdapter itemProgramAdapter = new RVChoicenessItemProgramAdapter(mContext);
                     bodyHolder.rvItemChoicenessProgram.setAdapter(itemProgramAdapter);
                     itemProgramAdapter.addAll(programData.getData());
+                    bodyHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(mContext, CategoryActivity.class);
+                            intent.putExtra("category_id",programData.getCategory_id());
+                            intent.putExtra("category_name",programData.getCategory_name());
+                            mContext.startActivity(intent);
+                        }
+                    });
                     break;
                 case TYPE_HOT_ATTENTION://列表最后
                     HotAttentionViewHolder hotAttentionHolder = (HotAttentionViewHolder) holder;
@@ -225,9 +237,19 @@ public class ChoicenessRVAdapter extends BaseRVAdapter<ChoicenessBean, Choicenes
                     hotAttentionHolder.tvProgramName2.setText(data.getHot_attention().getData().get(2).getProgram_name());
                     hotAttentionHolder.tvDescribe2.setText(data.getHot_attention().getData().get(2).getProgram_describe());
                     mImageUtil.loadURLImage(data.getHot_attention().getData().get(2).getProgram_img(), hotAttentionHolder.ivProgram2);
+                    hotAttentionHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(mContext, CategoryActivity.class);
+                            intent.putExtra("category_id",data.getHot_attention().getCategory_id());
+                            intent.putExtra("category_name",data.getHot_attention().getCategory_name());
+                            mContext.startActivity(intent);
+                        }
+                    });
             }
         }
     }
+
 
 
 
@@ -299,12 +321,13 @@ public class ChoicenessRVAdapter extends BaseRVAdapter<ChoicenessBean, Choicenes
         ImageView ivProgram2;
         TextView tvProgramName2;
         TextView tvDescribe2;
-
+        RelativeLayout rl1;
+        RelativeLayout rl2;
         HotAttentionViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            RelativeLayout rl1 = (RelativeLayout) view.findViewById(R.id.layout1);
-            RelativeLayout rl2 = (RelativeLayout) view.findViewById(R.id.layout2);
+            rl1 = (RelativeLayout) view.findViewById(R.id.layout1);
+            rl2 = (RelativeLayout) view.findViewById(R.id.layout2);
             ivProgram1 = (ImageView) rl1.findViewById(R.id.iv_program);
             tvProgramName1 = (TextView) rl1.findViewById(R.id.tv_program_name);
             tvDescribe1 = (TextView) rl1.findViewById(R.id.tv_describe);

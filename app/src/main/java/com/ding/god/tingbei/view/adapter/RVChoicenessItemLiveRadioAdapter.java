@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseRVAdapter;
 import com.ding.god.tingbei.model.bean.ChoicenessBean;
+import com.ding.god.tingbei.model.bean.RadioBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
  * Created by god on 2017/4/23.
  */
 
-public class RVChoicenessItemLiveRadioAdapter extends BaseRVAdapter<ChoicenessBean.LiveRadioRandomBean,RVChoicenessItemLiveRadioAdapter.LiveRadioViewHolder> {
+public class RVChoicenessItemLiveRadioAdapter extends BaseRVAdapter<RadioBean,RVChoicenessItemLiveRadioAdapter.LiveRadioViewHolder> {
     public RVChoicenessItemLiveRadioAdapter(Context context) {
         super(context);
     }
@@ -33,7 +34,7 @@ public class RVChoicenessItemLiveRadioAdapter extends BaseRVAdapter<ChoicenessBe
 
     @Override
     public void onBindViewHolder(LiveRadioViewHolder holder, int position) {
-        ChoicenessBean.LiveRadioRandomBean data = getDatas().get(position);
+        RadioBean data = getDatas().get(position);
         holder.tvRadioName.setText(data.getRadio_name());
         holder.tvRadioProgramInfo.setText(data.getProgram_describe());
         float num = Math.round(data.getRadio_audience()/10000*10/10);

@@ -23,7 +23,9 @@
         <activity android:name=".view.activity.SearchActivity" />
         <activity android:name=".base.PlayBarBaseActivity" />
         <activity android:name=".view.activity.CategoryActivity" />
-        <activity android:name=".view.activity.AlbumActivity"></activity>
+        <activity android:name=".view.activity.AlbumActivity" />
+        <activity android:name=".view.activity.RadioListActivity" />
+        <activity android:name=".view.activity.RadioPlayActivity"></activity>
     </application>
 
 </manifest>

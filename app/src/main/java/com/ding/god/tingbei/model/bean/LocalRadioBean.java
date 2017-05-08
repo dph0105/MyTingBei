@@ -39,7 +39,7 @@ public class LocalRadioBean {
          */
 
         private int is_exist_data;
-        private List<DataBean> data;
+        private List<RadioBean> data;
 
         public int getIs_exist_data() {
             return is_exist_data;
@@ -49,189 +49,15 @@ public class LocalRadioBean {
             this.is_exist_data = is_exist_data;
         }
 
-        public List<DataBean> getData() {
+        public List<RadioBean> getData() {
             return data;
         }
 
-        public void setData(List<DataBean> data) {
+        public void setData(List<RadioBean> data) {
             this.data = data;
         }
 
-        public static class DataBean {
-            /**
-             * radio_id : OLXMRUh7ftFcl0R
-             * live_stream : http://pili-live-hls.qiniu.tinberfm.com/live-yuanyu/cztv02.m3u8
-             * radio_name : 浙江之声
-             * radio_number : FM88
-             * start_time : 10:00
-             * end_time : 11:00
-             * program_name : 乐创梦工场
-             * program_describe : 把你的梦想变成现实，让你知道这是一个全新的世界
-             * album_id : FcK7XFTwVNbr50I
-             * program_list_id :
-             * image_url : http://image.tinberfm.com//uploadnew/804381467048904.jpg
-             * radio_img_url : http://image.tinberfm.com//uploadnew/804381467048904.jpg
-             * area_short_name : 浙江
-             * ts_diffence : 3091
-             * program_type : 1
-             * order_num : 1
-             * radio_audience : 20680
-             */
 
-            private String radio_id;
-            private String live_stream;
-            private String radio_name;
-            private String radio_number;
-            private String start_time;
-            private String end_time;
-            private String program_name;
-            private String program_describe;
-            private String album_id;
-            private String program_list_id;
-            private String image_url;
-            private String radio_img_url;
-            private String area_short_name;
-            private int ts_diffence;
-            private int program_type;
-            private int order_num;
-            private int radio_audience;
-
-            public String getRadio_id() {
-                return radio_id;
-            }
-
-            public void setRadio_id(String radio_id) {
-                this.radio_id = radio_id;
-            }
-
-            public String getLive_stream() {
-                return live_stream;
-            }
-
-            public void setLive_stream(String live_stream) {
-                this.live_stream = live_stream;
-            }
-
-            public String getRadio_name() {
-                return radio_name;
-            }
-
-            public void setRadio_name(String radio_name) {
-                this.radio_name = radio_name;
-            }
-
-            public String getRadio_number() {
-                return radio_number;
-            }
-
-            public void setRadio_number(String radio_number) {
-                this.radio_number = radio_number;
-            }
-
-            public String getStart_time() {
-                return start_time;
-            }
-
-            public void setStart_time(String start_time) {
-                this.start_time = start_time;
-            }
-
-            public String getEnd_time() {
-                return end_time;
-            }
-
-            public void setEnd_time(String end_time) {
-                this.end_time = end_time;
-            }
-
-            public String getProgram_name() {
-                return program_name;
-            }
-
-            public void setProgram_name(String program_name) {
-                this.program_name = program_name;
-            }
-
-            public String getProgram_describe() {
-                return program_describe;
-            }
-
-            public void setProgram_describe(String program_describe) {
-                this.program_describe = program_describe;
-            }
-
-            public String getAlbum_id() {
-                return album_id;
-            }
-
-            public void setAlbum_id(String album_id) {
-                this.album_id = album_id;
-            }
-
-            public String getProgram_list_id() {
-                return program_list_id;
-            }
-
-            public void setProgram_list_id(String program_list_id) {
-                this.program_list_id = program_list_id;
-            }
-
-            public String getImage_url() {
-                return image_url;
-            }
-
-            public void setImage_url(String image_url) {
-                this.image_url = image_url;
-            }
-
-            public String getRadio_img_url() {
-                return radio_img_url;
-            }
-
-            public void setRadio_img_url(String radio_img_url) {
-                this.radio_img_url = radio_img_url;
-            }
-
-            public String getArea_short_name() {
-                return area_short_name;
-            }
-
-            public void setArea_short_name(String area_short_name) {
-                this.area_short_name = area_short_name;
-            }
-
-            public int getTs_diffence() {
-                return ts_diffence;
-            }
-
-            public void setTs_diffence(int ts_diffence) {
-                this.ts_diffence = ts_diffence;
-            }
-
-            public int getProgram_type() {
-                return program_type;
-            }
-
-            public void setProgram_type(int program_type) {
-                this.program_type = program_type;
-            }
-
-            public int getOrder_num() {
-                return order_num;
-            }
-
-            public void setOrder_num(int order_num) {
-                this.order_num = order_num;
-            }
-
-            public int getRadio_audience() {
-                return radio_audience;
-            }
-
-            public void setRadio_audience(int radio_audience) {
-                this.radio_audience = radio_audience;
-            }
-        }
     }
 
     public static class AllBean {
@@ -241,7 +67,7 @@ public class LocalRadioBean {
          */
 
         private int is_exist_data;
-        private List<?> data;
+        private List<RadioBean> data;
 
         public int getIs_exist_data() {
             return is_exist_data;
@@ -251,11 +77,11 @@ public class LocalRadioBean {
             this.is_exist_data = is_exist_data;
         }
 
-        public List<?> getData() {
+        public List<RadioBean> getData() {
             return data;
         }
 
-        public void setData(List<?> data) {
+        public void setData(List<RadioBean> data) {
             this.data = data;
         }
     }

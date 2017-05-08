@@ -62,7 +62,6 @@ public class RVSortAdapter extends BaseRVAdapter<RadioTypeBean, RVSortAdapter.So
         Intent intent = new Intent(mContext, CategoryActivity.class);
         intent.putExtra("category_id",data.getCategory_id());
         intent.putExtra("category_name",data.getCategory_name());
-        Log.d("category","id: "+data.getCategory_id()+" name: "+data.getCategory_name());
         mContext.startActivity(intent);
     }
 
