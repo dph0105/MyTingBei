@@ -25,7 +25,12 @@
         <activity android:name=".view.activity.CategoryActivity" />
         <activity android:name=".view.activity.AlbumActivity" />
         <activity android:name=".view.activity.RadioListActivity" />
-        <activity android:name=".view.activity.RadioPlayActivity"></activity>
+        <activity android:name=".view.activity.RadioPlayActivity" />
+
+        <service
+            android:name=".service.PlayService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

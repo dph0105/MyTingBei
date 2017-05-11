@@ -1,6 +1,7 @@
 package com.ding.god.tingbei.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseRVAdapter;
 import com.ding.god.tingbei.model.bean.ChoicenessBean;
 import com.ding.god.tingbei.model.bean.RadioBean;
+import com.ding.god.tingbei.view.activity.RadioPlayActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,12 +36,20 @@ public class RVChoicenessItemLiveRadioAdapter extends BaseRVAdapter<RadioBean,RV
 
     @Override
     public void onBindViewHolder(LiveRadioViewHolder holder, int position) {
-        RadioBean data = getDatas().get(position);
+        final RadioBean data = getDatas().get(position);
         holder.tvRadioName.setText(data.getRadio_name());
         holder.tvRadioProgramInfo.setText(data.getProgram_describe());
         float num = Math.round(data.getRadio_audience()/10000*10/10);
         holder.tvRadioListenNum.setText("收听人数："+num+"万");
         mImageUtil.loadURLImage(data.getImage_url(),holder.ivRadioIcon);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, RadioPlayActivity.class);
+                intent.putExtra("radio_id",data.getRadio_id());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     static class LiveRadioViewHolder extends RecyclerView.ViewHolder {

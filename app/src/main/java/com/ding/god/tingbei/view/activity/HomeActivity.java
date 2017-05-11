@@ -2,6 +2,8 @@ package com.ding.god.tingbei.view.activity;
 
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.ding.god.tingbei.base.PlayBarBaseActivity;
 import com.ding.god.tingbei.customview.PlayBar;
 import com.ding.god.tingbei.presenter.MainPresenter;
 import com.ding.god.tingbei.rx.RxTransfromer;
+import com.ding.god.tingbei.service.PlayService;
 import com.ding.god.tingbei.view.adapter.HomePagerAdapter;
 import com.ding.god.tingbei.view.iview.IMainView;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -45,6 +48,8 @@ public class HomeActivity extends PlayBarBaseActivity<MainPresenter> implements 
 
     @Override
     protected int getLayoutID() {
+        Intent intent = new Intent(this, PlayService.class);
+        startService(intent);
         return R.layout.activity_home;
     }
 
@@ -86,5 +91,10 @@ public class HomeActivity extends PlayBarBaseActivity<MainPresenter> implements 
     }
 
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent = new Intent(this, PlayService.class);
+        stopService(intent);
+    }
 }

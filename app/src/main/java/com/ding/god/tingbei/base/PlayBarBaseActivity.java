@@ -49,7 +49,7 @@ public abstract class PlayBarBaseActivity<P extends BasePresenter> extends RxApp
             if(time==0) {
                 Toast.makeText(mContext,message,Toast.LENGTH_SHORT).show();
             }else {
-                Toast.makeText(mContext,message,time);
+                Toast.makeText(mContext,message,time).show();
             }
         }
     }

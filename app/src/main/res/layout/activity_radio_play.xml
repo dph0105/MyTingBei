@@ -69,5 +69,65 @@
             android:layout_height="3dp"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        >
+    <ImageView
+        android:id="@+id/iv_play_control"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/selector_play_conrol"/>
 
+        <ImageView
+            android:id="@+id/iv_play_previous"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/player_left_detail"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/iv_play_control"
+            android:layout_marginEnd="55dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_play_next"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/player_right_detail"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/iv_play_control"
+            android:layout_marginStart="55dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/play_list"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:drawableTop="@mipmap/playlist"
+            android:textColor="@color/text_gray"
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/play_leave_message"
+        android:textSize="13sp"
+        android:textColor="@color/text_gray"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_activity_radio_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" />
 </LinearLayout>

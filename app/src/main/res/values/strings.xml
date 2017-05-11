@@ -28,4 +28,6 @@
     <string name="content_introduction">内容简介</string>
     <string name="order">排序</string>
     <string name="select">选集</string>
+    <string name="play_list">节目单</string>
+    <string name="play_leave_message">话题留言</string>
 </resources>

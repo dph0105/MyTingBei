@@ -31,8 +31,6 @@ public class RxBus {
     private final Map<Class<?>, Object> mStickyEventMap;
 
 
-   // private final ReplayProcessor<Object> stickyRxBus2 = PublishProcessor.create().
-
     private RxBus() {
         rxBus = PublishProcessor.create().toSerialized();
         mStickyEventMap = new ConcurrentHashMap<>(); //ConcurrentHashMap是一个线程安全的HashMap， 采用stripping lock（分离锁），效率比HashTable高很多。
