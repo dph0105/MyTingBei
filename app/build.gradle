@@ -60,10 +60,10 @@ dependencies {
 
 
     //IjkPlayer
-   // # required, enough for most devices.
+    // # required, enough for most devices.
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.7.9'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.9'
-   // # Other ABIs: optional
+    // # Other ABIs: optional
     compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.7.9'
     compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.7.9'
     compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.7.9'

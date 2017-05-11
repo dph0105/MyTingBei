@@ -1,8 +1,6 @@
 package com.ding.god.tingbei.view.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -22,7 +20,6 @@ import com.ding.god.tingbei.view.iview.IAlbumView;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class AlbumActivity extends PlayBarBaseActivity<AlbumPresenter> implements IAlbumView {
 
@@ -51,7 +48,7 @@ public class AlbumActivity extends PlayBarBaseActivity<AlbumPresenter> implement
     @BindView(R.id.vp_activity_album)
     ViewPager vpActivityAlbum;
     @BindView(R.id.activity_album)
-    CoordinatorLayout activityAlbum;
+    LinearLayout activityAlbum;
 
     @Override
     protected int getLayoutID() {
@@ -81,7 +78,12 @@ public class AlbumActivity extends PlayBarBaseActivity<AlbumPresenter> implement
 
     @Override
     public void bindListener() {
-
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override

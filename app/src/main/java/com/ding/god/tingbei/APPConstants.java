@@ -7,7 +7,7 @@ package com.ding.god.tingbei;
 public class APPConstants {
 
     public static final String AREA_ID = "n2yIao0k50yOqgc";//浙江的area_id
-    public static final String CUSTOMER_ID = "rJq8Ehr0GAK0hBc";
+    public static final String CUSTOMER_ID = "";
     public static final String  DEVICE_ID = "866963020911139";
     public static final String CATEGORY_ID_COUNTRY = "Goqor7TJvd2S9GX"; //国家台
     public static final String CATEGORY_ID_NET = "aXG7c1FzrDu3YSj"; //网络台

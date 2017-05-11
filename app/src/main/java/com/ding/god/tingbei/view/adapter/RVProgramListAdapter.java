@@ -32,7 +32,7 @@ public class RVProgramListAdapter extends BaseRVAdapter<ProgramListBean,RVProgra
     @Override
     public void onBindViewHolder(ProgramListViewHolder holder, int position) {
         holder.tvProgramName.setText(getDatas().get(position).getProgram_name());
-        holder.tvProgramName.setText(getDatas().get(position).getProgram_date()+" 更新");
+        holder.tvProgramUpdataDate.setText(getDatas().get(position).getProgram_date()+" 更新");
     }
 
     static class ProgramListViewHolder extends RecyclerView.ViewHolder {

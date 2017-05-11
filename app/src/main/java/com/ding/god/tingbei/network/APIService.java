@@ -104,14 +104,14 @@ public interface APIService {
                                                         @Field("program_id") String program_id);  //???暂时没有填
 
     @FormUrlEncoded
-    @POST("program/getOverProgramt")
+    @POST("program/getOverProgram")
     Flowable<BaseResponse<List<ProgramListBean>>> postProgramList(@Field("program_id") String program_id, //""         //专辑详情的节目列表 2
                                                                   @Field("program_type") String program_type,   //
                                                                   @Field("program_list_id") String program_list_id,
                                                                   @Field("page") int page,
                                                                   @Field("order") int order,    //默认  1
                                                                   @Field("customerID") String customerID,
-                                                                  @Field("device_id") String device_id   );
+                                                                  @Field("device_id") String device_id);
 
 
     @FormUrlEncoded

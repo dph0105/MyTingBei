@@ -6,9 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ding.god.tingbei.R;
@@ -21,7 +19,6 @@ import com.ding.god.tingbei.view.iview.IProgramListView;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,7 +74,7 @@ public class ProgramListFragment extends BaseFragment<ProgramListPresenter> impl
         String program_list_id = bundle.getString("album_id");
         String program_type = bundle.getString("album_type");
         String program_id = bundle.getString("program_id");
-        presenter.initData(program_id, program_type, program_list_id, 1, 1);
+        presenter.initData(program_id ,program_type, program_list_id, 1, 1);
     }
 
     @Override

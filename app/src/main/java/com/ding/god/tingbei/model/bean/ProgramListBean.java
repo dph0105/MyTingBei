@@ -160,4 +160,25 @@ public class ProgramListBean {
     public void setAlbum_logo(String album_logo) {
         this.album_logo = album_logo;
     }
+
+    @Override
+    public String toString() {
+        return "ProgramListBean{" +
+                "program_id='" + program_id + '\'' +
+                ", program_file='" + program_file + '\'' +
+                ", program_name='" + program_name + '\'' +
+                ", program_date='" + program_date + '\'' +
+                ", program_describe='" + program_describe + '\'' +
+                ", program_host='" + program_host + '\'' +
+                ", program_size='" + program_size + '\'' +
+                ", program_duration='" + program_duration + '\'' +
+                ", program_logo='" + program_logo + '\'' +
+                ", radio_id='" + radio_id + '\'' +
+                ", radio_number='" + radio_number + '\'' +
+                ", program_type='" + program_type + '\'' +
+                ", album_id='" + album_id + '\'' +
+                ", album_name='" + album_name + '\'' +
+                ", album_logo='" + album_logo + '\'' +
+                '}';
+    }
 }

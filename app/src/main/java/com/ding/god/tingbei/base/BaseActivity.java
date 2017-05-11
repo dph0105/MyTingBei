@@ -9,8 +9,6 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-
 public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatActivity implements IBaseView {
 
     protected P presenter;
@@ -40,7 +38,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
     protected void onDestroy() {
         presenter.onDestroy();
         super.onDestroy();
-        ButterKnife.bind(this).unbind();
     }
 
     @Override

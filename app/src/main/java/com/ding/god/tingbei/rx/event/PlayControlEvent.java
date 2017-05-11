@@ -1,6 +1,5 @@
 package com.ding.god.tingbei.rx.event;
 
-import com.ding.god.tingbei.model.bean.RadioBean;
 import com.ding.god.tingbei.model.bean.RadioInfoBean;
 
 /**
@@ -8,6 +7,20 @@ import com.ding.god.tingbei.model.bean.RadioInfoBean;
  */
 
 public class PlayControlEvent {
+
+    public static class StartPlayRefresh{
+
+        private RadioInfoBean radioInfoBean;
+
+        public RadioInfoBean getRadioInfoBean() {
+            return radioInfoBean;
+        }
+
+        public void setRadioInfoBean(RadioInfoBean radioBean) {
+            this.radioInfoBean = radioBean;
+        }
+    }
+
 
     public static class StartPlay{
 

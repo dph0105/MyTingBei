@@ -11,4 +11,6 @@ public interface IRadioPlayView extends IBaseView {
 
     void setView(RadioInfoBean data);
 
+
+
 }

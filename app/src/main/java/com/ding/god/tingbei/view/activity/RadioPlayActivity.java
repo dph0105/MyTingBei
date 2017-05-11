@@ -1,7 +1,6 @@
 package com.ding.god.tingbei.view.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ding.god.tingbei.MyApplication;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseActivity;
 import com.ding.god.tingbei.model.bean.RadioInfoBean;
@@ -20,7 +18,6 @@ import com.ding.god.tingbei.rx.event.PlayControlEvent;
 import com.ding.god.tingbei.view.iview.IRadioPlayView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 

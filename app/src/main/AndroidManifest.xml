@@ -30,7 +30,9 @@
         <service
             android:name=".service.PlayService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".view.activity.TestActivity"></activity>
     </application>
 
 </manifest>

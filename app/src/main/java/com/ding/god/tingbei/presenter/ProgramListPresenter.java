@@ -16,8 +16,6 @@ import java.util.List;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 
-import static android.R.attr.order;
-
 /**
  * Created by Administrator on 2017/5/6.
  */
@@ -39,7 +37,7 @@ public class ProgramListPresenter extends BasePresenter<ProgramListModel,IProgra
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
-
+                        mView.toast("联网失败",0);
                     }
                 });
 
