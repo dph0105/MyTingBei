@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.ding.god.tingbei.util.ImageUtil;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -13,6 +14,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
 
     protected P presenter;
     protected Context mContext;
+    protected ImageUtil mImageUtil;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +22,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
         ButterKnife.bind(this);
         mContext = this;
         initpresenter();
+        mImageUtil = new ImageUtil(mContext);
     }
 
 

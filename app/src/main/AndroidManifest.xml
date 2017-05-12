@@ -32,7 +32,9 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".view.activity.TestActivity"></activity>
+        <activity android:name=".view.activity.TestActivity" />
+        <activity android:name=".view.activity.ProgramPlayActivity" />
+        <activity android:name=".view.activity.MyDownloadActivity"></activity>
     </application>
 
 </manifest>

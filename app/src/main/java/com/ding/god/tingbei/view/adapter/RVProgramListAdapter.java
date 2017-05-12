@@ -1,14 +1,18 @@
 package com.ding.god.tingbei.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ding.god.tingbei.APPConstants;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseRVAdapter;
 import com.ding.god.tingbei.model.bean.ProgramListBean;
+import com.ding.god.tingbei.rx.event.IntentEvent;
+import com.ding.god.tingbei.view.activity.ProgramPlayActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,9 +34,21 @@ public class RVProgramListAdapter extends BaseRVAdapter<ProgramListBean,RVProgra
     }
 
     @Override
-    public void onBindViewHolder(ProgramListViewHolder holder, int position) {
+    public void onBindViewHolder(ProgramListViewHolder holder, final int position) {
         holder.tvProgramName.setText(getDatas().get(position).getProgram_name());
         holder.tvProgramUpdataDate.setText(getDatas().get(position).getProgram_date()+" 更新");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ProgramPlayActivity.class);
+                intent.putExtra("program_id",getDatas().get(position).getProgram_id());
+                intent.putExtra("program_type",getDatas().get(position).getProgram_type());
+                intent.putExtra("customer_id", APPConstants.CUSTOMER_ID);
+                mContext.startActivity(intent);
+            }
+        });
+
     }
 
     static class ProgramListViewHolder extends RecyclerView.ViewHolder {

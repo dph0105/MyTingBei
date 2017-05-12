@@ -77,16 +77,16 @@
         >
     <ImageView
         android:id="@+id/iv_play_control"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:scaleType="centerCrop"
         android:src="@drawable/selector_play_conrol"/>
 
         <ImageView
             android:id="@+id/iv_play_previous"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@mipmap/player_left_detail"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/iv_play_control"
@@ -95,8 +95,8 @@
 
         <ImageView
             android:id="@+id/iv_play_next"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@mipmap/player_right_detail"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/iv_play_control"

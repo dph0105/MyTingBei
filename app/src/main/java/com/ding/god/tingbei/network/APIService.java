@@ -4,6 +4,7 @@ import com.ding.god.tingbei.model.bean.AlbumInfoBean;
 import com.ding.god.tingbei.model.bean.ChoicenessBean;
 import com.ding.god.tingbei.model.bean.LoadingImgBean;
 import com.ding.god.tingbei.model.bean.LocalRadioBean;
+import com.ding.god.tingbei.model.bean.ProgramComment;
 import com.ding.god.tingbei.model.bean.ProgramListBean;
 import com.ding.god.tingbei.model.bean.RadioArea;
 import com.ding.god.tingbei.model.bean.RadioBean;
@@ -14,6 +15,7 @@ import com.ding.god.tingbei.model.bean.RadioInfoBean;
 import com.ding.god.tingbei.model.bean.RadioTypeBean;
 import com.ding.god.tingbei.model.bean.SearchResultAllBean;
 import com.ding.god.tingbei.model.bean.SearchResultTypeBean;
+import com.ding.god.tingbei.model.bean.ProgramInfoBean;
 
 import java.util.List;
 
@@ -122,11 +124,22 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("programComment/getProgramCommentListByAlbumId")
-    Flowable<BaseResponse<AlbumInfoBean>> postProgramComment(@Field("page") int page,         //pinglun
+    Flowable<BaseResponse<ProgramComment>> postRadioComment(@Field("page") int page,         //pinglun   电台评论
                                                         @Field("radio_id") String radio_id,  //kong
                                                         @Field("album_id") String album_id,
                                                         @Field("page_size") int page_size);
 
+    @FormUrlEncoded
+    @POST("programComment/getProgramCommentListByProgramAudioId")
+    Flowable<BaseResponse<ProgramComment>> postProgramComment(@Field("page") int page,         //pinglun   节目播放面弹幕
+                                                              @Field("program_audio_id") String program_audio_id,
+                                                              @Field("page_size") int page_size);
+
+    @FormUrlEncoded
+    @POST("program/getProgramInfo")
+    Flowable<BaseResponse<ProgramInfoBean>> postProgramInfo(@Field("program_id") String program_id,         //节目播放页信息
+                                                            @Field("program_type") String program_type,
+                                                            @Field("customer_id") String customer_id);
 
 
 }

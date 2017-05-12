@@ -54,10 +54,11 @@ public class PlayService extends Service {
                 .subscribe(new Consumer<PlayControlEvent.StartPlayRefresh>() {
                     @Override
                     public void accept(@NonNull PlayControlEvent.StartPlayRefresh startPlayRefresh) throws Exception {
+                        String stream = startPlayRefresh.getProgramInfoBean()==null?startPlayRefresh.getRadioInfoBean().getLive_stream():startPlayRefresh.getProgramInfoBean().getProgram_file();
                         if (ijkMediaPlayer.getDataSource()!=null){
-                            if (!ijkMediaPlayer.getDataSource().equals(startPlayRefresh.getRadioInfoBean().getLive_stream())){
+                            if (!ijkMediaPlayer.getDataSource().equals(stream)){
                                 ijkMediaPlayer.reset();
-                                ijkMediaPlayer.setDataSource(startPlayRefresh.getRadioInfoBean().getLive_stream());  //设置播放源
+                                ijkMediaPlayer.setDataSource(stream);  //设置播放源
                                 ijkMediaPlayer.prepareAsync();                                            //异步准备
                                 ijkMediaPlayer.setOnPreparedListener(new IjkPrepareListener());
                                 RxBus.getRxBus().postSticky(new PlayControlEvent.IsPrepared());
@@ -69,7 +70,7 @@ public class PlayService extends Service {
                                 RxBus.getRxBus().post(new PlayControlEvent.Started());
                             }
                         }else {
-                            ijkMediaPlayer.setDataSource(startPlayRefresh.getRadioInfoBean().getLive_stream());  //设置播放源
+                            ijkMediaPlayer.setDataSource(stream);  //设置播放源
                             ijkMediaPlayer.prepareAsync();                                            //异步准备
                             ijkMediaPlayer.setOnPreparedListener(new IjkPrepareListener());
                             RxBus.getRxBus().postSticky(new PlayControlEvent.IsPrepared());
@@ -84,11 +85,11 @@ public class PlayService extends Service {
                 .subscribe(new Consumer<PlayControlEvent.StartPlay>() {
                     @Override
                     public void accept(@NonNull PlayControlEvent.StartPlay startPlay) throws Exception {
-                        Log.d("stream",startPlay.toString());
+                        String stream = startPlay.getProgramInfoBean()==null?startPlay.getRadioBean().getLive_stream():startPlay.getProgramInfoBean().getProgram_file();
                         if (ijkMediaPlayer.getDataSource()!=null){  //判断是否是暂停的，有DataSource没有reset
                             if(ijkMediaPlayer.isPlaying()) {//判断是否正在播放
                                 ijkMediaPlayer.reset();
-                                ijkMediaPlayer.setDataSource(startPlay.getRadioBean().getLive_stream());  //设置播放源
+                                ijkMediaPlayer.setDataSource(stream);  //设置播放源
                                 ijkMediaPlayer.prepareAsync();                                            //异步准备
                                 ijkMediaPlayer.setOnPreparedListener(new IjkPrepareListener());
                                 RxBus.getRxBus().postSticky(new PlayControlEvent.IsPrepared());
@@ -98,7 +99,7 @@ public class PlayService extends Service {
                                 RxBus.getRxBus().postSticky(new PlayControlEvent.Started());
                             }
                         }else {
-                            ijkMediaPlayer.setDataSource(startPlay.getRadioBean().getLive_stream());  //设置播放源
+                            ijkMediaPlayer.setDataSource(stream);  //设置播放源
                             ijkMediaPlayer.prepareAsync();                                            //异步准备
                             ijkMediaPlayer.setOnPreparedListener(new IjkPrepareListener());
                             RxBus.getRxBus().postSticky(new PlayControlEvent.IsPrepared());
