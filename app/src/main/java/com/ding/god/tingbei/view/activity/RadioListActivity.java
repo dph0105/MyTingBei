@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.andview.refreshview.XRefreshView;
 import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseActivity;
+import com.ding.god.tingbei.base.PlayBarBaseActivity;
+import com.ding.god.tingbei.customview.PlayBar;
 import com.ding.god.tingbei.model.bean.RadioBean;
 import com.ding.god.tingbei.presenter.RadioListPresenter;
 import com.ding.god.tingbei.view.adapter.RVChoicenessItemLiveRadioAdapter;
@@ -24,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RadioListActivity extends BaseActivity<RadioListPresenter> implements IRadioListView {
+public class RadioListActivity extends PlayBarBaseActivity<RadioListPresenter> implements IRadioListView {
 
 
     @BindView(R.id.iv_back)

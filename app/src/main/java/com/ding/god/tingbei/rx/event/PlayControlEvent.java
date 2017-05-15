@@ -30,7 +30,6 @@ public class PlayControlEvent {
         }
     }
 
-
     public static class StartPlay{
 
         private ProgramInfoBean programInfoBean;
@@ -52,6 +51,7 @@ public class PlayControlEvent {
             this.programInfoBean = programInfoBean;
         }
     }
+
     public static class StopPlay{
 
     }

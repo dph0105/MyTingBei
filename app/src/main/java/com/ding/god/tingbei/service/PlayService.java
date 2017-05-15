@@ -80,7 +80,7 @@ public class PlayService extends Service {
                 });
 
         //接受播放消息
-        RxBus.getRxBus().toFlowable(PlayControlEvent.StartPlay.class)
+        RxBus.getRxBus().toFlowableSticky(PlayControlEvent.StartPlay.class)
                 .compose(RxTransfromer.<PlayControlEvent.StartPlay>observeOnToMain())
                 .subscribe(new Consumer<PlayControlEvent.StartPlay>() {
                     @Override
@@ -107,7 +107,7 @@ public class PlayService extends Service {
                     }
                 });
         //接受暂停消息
-        RxBus.getRxBus().toFlowable(PlayControlEvent.StopPlay.class)
+        RxBus.getRxBus().toFlowableSticky(PlayControlEvent.StopPlay.class)
                 .compose(RxTransfromer.<PlayControlEvent.StopPlay>observeOnToMain())
                 .subscribe(new Consumer<PlayControlEvent.StopPlay>() {
                     @Override
@@ -121,7 +121,7 @@ public class PlayService extends Service {
                     }
                 });
         //接受上一首或下一首消息
-        RxBus.getRxBus().toFlowable(PlayControlEvent.PreviousOrNext.class)
+        RxBus.getRxBus().toFlowableSticky(PlayControlEvent.PreviousOrNext.class)
                 .compose(RxTransfromer.<PlayControlEvent.PreviousOrNext>observeOnToMain())
                 .subscribe(new Consumer<PlayControlEvent.PreviousOrNext>() {
                     @Override

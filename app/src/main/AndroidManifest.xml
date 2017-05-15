@@ -34,7 +34,8 @@
 
         <activity android:name=".view.activity.TestActivity" />
         <activity android:name=".view.activity.ProgramPlayActivity" />
-        <activity android:name=".view.activity.MyDownloadActivity"></activity>
+        <activity android:name=".view.activity.MyDownloadActivity" />
+        <activity android:name=".view.activity.RadioMenuActivity"></activity>
     </application>
 
 </manifest>

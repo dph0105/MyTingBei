@@ -10,6 +10,8 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.squareup.picasso.Picasso;
 
+import java.util.concurrent.ExecutionException;
+
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
@@ -38,6 +40,27 @@ public  class ImageUtil {
           Glide.with(context)
                   .load(url)
                   .into(imageView);
+    }
+
+    public Bitmap loadBitmap(final String url){
+        final Bitmap[] bitmap = {null};
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    bitmap[0] = Glide.with(context)
+                            .load(url)
+                            .asBitmap()
+                            .into(1000,1000)
+                            .get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        return bitmap[0];
     }
 
 }

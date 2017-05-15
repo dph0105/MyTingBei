@@ -68,9 +68,9 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.7.9'
     compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.7.9'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'jp.wasabeef:glide-transformations:2.0.1'
 }
 
 repositories {

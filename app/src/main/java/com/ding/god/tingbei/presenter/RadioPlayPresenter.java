@@ -38,7 +38,7 @@ public class RadioPlayPresenter extends BasePresenter<RadioPlayModel,IRadioPlayV
                         mView.setView(response.getData());
                         PlayControlEvent.StartPlayRefresh startPlayRefresh = new PlayControlEvent.StartPlayRefresh();
                         startPlayRefresh.setRadioInfoBean(response.getData());
-                        RxBus.getRxBus().post(startPlayRefresh);
+                        RxBus.getRxBus().postSticky(startPlayRefresh);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -52,9 +52,9 @@ public class RadioPlayPresenter extends BasePresenter<RadioPlayModel,IRadioPlayV
         if(PlayService.getPlayState()==PlayService.PLAYSTATE_NULL||PlayService.getPlayState()==PlayService.PLAYSTATE_PAUSE) {
             PlayControlEvent.StartPlay startPlay = new PlayControlEvent.StartPlay();
             startPlay.setRadioBean(mModel.getRadioInfoBean());
-            RxBus.getRxBus().post(startPlay);
+            RxBus.getRxBus().postSticky(startPlay);
         }else if(PlayService.getPlayState()==PlayService.PLAYSTATE_PLAYING) {
-            RxBus.getRxBus().post(new PlayControlEvent.StopPlay());
+            RxBus.getRxBus().postSticky(new PlayControlEvent.StopPlay());
         }
     }
 
