@@ -5,9 +5,17 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.ding.god.tingbei.MyApplication;
+import com.ding.god.tingbei.dbbean.PlayRadioHistory;
+import com.ding.god.tingbei.gen.DaoSession;
+import com.ding.god.tingbei.model.bean.ProgramListBean;
+import com.ding.god.tingbei.model.bean.RadioInfoBean;
 import com.ding.god.tingbei.rx.RxBus;
 import com.ding.god.tingbei.rx.RxTransfromer;
 import com.ding.god.tingbei.rx.event.PlayControlEvent;
+import com.ding.god.tingbei.util.cacheutil.SPUtil;
+
+import java.util.List;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
@@ -16,11 +24,26 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 public class PlayService extends Service {
     private IjkMediaPlayer ijkMediaPlayer;
+
+    public static final String SP_PLAY_TYPE_KEY = "PLAY_TYPE";
+    public static final String SP_PLAY_POSITION_KEY = "PLAY_POSITION";
+
     public static final int PLAYSTATE_NULL = 0;     //闲置状态
     public static final int PLAYSTATE_PLAYING = 1;  //正在播放
     public static final int PLAYSTATE_PAUSE = 2;    //暂停状态
+
+    public static final int PLAY_TYPE_PROGRAM = 1;
+    public static final int PLAY_TYPE_RADIO = 2;
+
+    public static int playType = 0;
+    public static int playState = 0;
+    public static int playPosition = 0;                //播放的是第几首
+
+    private String stream = null;
     private long currentPosition;
-    private static int playState = 0;
+
+    private List<ProgramListBean> programList;                //播放数据;
+    private List<RadioInfoBean> radioInfoList;
 
     public PlayService() {
     }
@@ -54,26 +77,28 @@ public class PlayService extends Service {
                 .subscribe(new Consumer<PlayControlEvent.StartPlayRefresh>() {
                     @Override
                     public void accept(@NonNull PlayControlEvent.StartPlayRefresh startPlayRefresh) throws Exception {
-                        String stream = startPlayRefresh.getProgramInfoBean()==null?startPlayRefresh.getRadioInfoBean().getLive_stream():startPlayRefresh.getProgramInfoBean().getProgram_file();
-                        if (ijkMediaPlayer.getDataSource()!=null){
-                            if (!ijkMediaPlayer.getDataSource().equals(stream)){
+
+                        playPosition = SPUtil.getInt(getApplicationContext(), SP_PLAY_POSITION_KEY);
+                        playType = SPUtil.getInt(getApplicationContext(),SP_PLAY_TYPE_KEY);
+                        if(playType==PlayService.PLAY_TYPE_PROGRAM) {
+                            stream = programList.get(playPosition).getProgram_file();
+                        }else if(playType == PlayService.PLAY_TYPE_RADIO) {
+                            stream = radioInfoList.get(0).getLive_stream();
+                        }
+                        if(ijkMediaPlayer.getDataSource()==null) {
+                            Log.d("stream",stream);
+                            ijkMediaPlayer.setDataSource(stream);  //设置播放源
+                            ijkMediaPlayer.prepareAsync();                                            //异步准备
+                            ijkMediaPlayer.setOnPreparedListener(new IjkPrepareListener());
+                            RxBus.getRxBus().postSticky(new PlayControlEvent.IsPrepared());
+                        }else {
+                            if(!ijkMediaPlayer.getDataSource().equals(stream)) {
                                 ijkMediaPlayer.reset();
                                 ijkMediaPlayer.setDataSource(stream);  //设置播放源
                                 ijkMediaPlayer.prepareAsync();                                            //异步准备
                                 ijkMediaPlayer.setOnPreparedListener(new IjkPrepareListener());
                                 RxBus.getRxBus().postSticky(new PlayControlEvent.IsPrepared());
-                            }else {
-                                if (!ijkMediaPlayer.isPlaying()){
-                                    ijkMediaPlayer.start();
-                                    playState = PLAYSTATE_PLAYING;
-                                }
-                                RxBus.getRxBus().post(new PlayControlEvent.Started());
                             }
-                        }else {
-                            ijkMediaPlayer.setDataSource(stream);  //设置播放源
-                            ijkMediaPlayer.prepareAsync();                                            //异步准备
-                            ijkMediaPlayer.setOnPreparedListener(new IjkPrepareListener());
-                            RxBus.getRxBus().postSticky(new PlayControlEvent.IsPrepared());
                         }
 
                     }
@@ -85,24 +110,10 @@ public class PlayService extends Service {
                 .subscribe(new Consumer<PlayControlEvent.StartPlay>() {
                     @Override
                     public void accept(@NonNull PlayControlEvent.StartPlay startPlay) throws Exception {
-                        String stream = startPlay.getProgramInfoBean()==null?startPlay.getRadioBean().getLive_stream():startPlay.getProgramInfoBean().getProgram_file();
-                        if (ijkMediaPlayer.getDataSource()!=null){  //判断是否是暂停的，有DataSource没有reset
-                            if(ijkMediaPlayer.isPlaying()) {//判断是否正在播放
-                                ijkMediaPlayer.reset();
-                                ijkMediaPlayer.setDataSource(stream);  //设置播放源
-                                ijkMediaPlayer.prepareAsync();                                            //异步准备
-                                ijkMediaPlayer.setOnPreparedListener(new IjkPrepareListener());
-                                RxBus.getRxBus().postSticky(new PlayControlEvent.IsPrepared());
-                            }else {
-                                ijkMediaPlayer.start();
-                                playState = PLAYSTATE_PLAYING;
-                                RxBus.getRxBus().postSticky(new PlayControlEvent.Started());
-                            }
-                        }else {
-                            ijkMediaPlayer.setDataSource(stream);  //设置播放源
-                            ijkMediaPlayer.prepareAsync();                                            //异步准备
-                            ijkMediaPlayer.setOnPreparedListener(new IjkPrepareListener());
-                            RxBus.getRxBus().postSticky(new PlayControlEvent.IsPrepared());
+                        if(!ijkMediaPlayer.isPlaying()) {
+                            ijkMediaPlayer.start();
+                            playState = PLAYSTATE_PLAYING;
+                            RxBus.getRxBus().postSticky(new PlayControlEvent.Started());
                         }
                     }
                 });
@@ -138,7 +149,29 @@ public class PlayService extends Service {
 
                     }
                 });
+
+        //刷新歌单数据
+        RxBus.getRxBus().toFlowableSticky(PlayControlEvent.PreData.class)
+                .compose(RxTransfromer.<PlayControlEvent.PreData>observeOnToMain())
+                .subscribe(new Consumer<PlayControlEvent.PreData>() {
+                    @Override
+                    public void accept(@NonNull PlayControlEvent.PreData preData) throws Exception {
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                programList = MyApplication.getInstance().getDaoSession().getProgramListBeanDao().loadAll();
+                                radioInfoList = MyApplication.getInstance().getDaoSession().getRadioInfoBeanDao().loadAll();
+                                playType = SPUtil.getInt(getApplicationContext(),SP_PLAY_TYPE_KEY);
+                                if(playType == PLAY_TYPE_RADIO) {
+                                    RxBus.getRxBus().postSticky(new PlayControlEvent.StartPlayRefresh());
+                                }
+                            }
+                        }).start();
+                    }
+                });
     }
+
 
 
     @Override
@@ -148,7 +181,7 @@ public class PlayService extends Service {
         ijkMediaPlayer.release();
     }
 
-    class IjkPrepareListener implements IMediaPlayer.OnPreparedListener{
+    private class IjkPrepareListener implements IMediaPlayer.OnPreparedListener{
         @Override
         public void onPrepared(IMediaPlayer iMediaPlayer) {
             RxBus.getRxBus().postSticky(new PlayControlEvent.Started());
@@ -157,9 +190,6 @@ public class PlayService extends Service {
         }
     }
 
-    public static int getPlayState() {
-        return playState;
-    }
 
 
 }

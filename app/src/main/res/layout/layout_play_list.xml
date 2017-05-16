@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <LinearLayout
+            android:id="@+id/play_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/selector_play_list"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/play_loop"
+                android:layout_marginStart="5dp"
+                />
+        </LinearLayout>
+       <ImageView
+           android:id="@+id/iv_play_list_rank"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@mipmap/rank_down1"
+           android:layout_centerVertical="true"
+           android:layout_alignParentRight="true"
+           android:layout_marginEnd="10dp"
+           />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/recorded_download"
+            android:layout_toStartOf="@id/iv_play_list_rank"
+            android:layout_marginEnd="10dp"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_btn_close"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/close"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        />
+    <com.andview.refreshview.XRefreshView
+        android:id="@+id/xrv_play_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top"
+        android:layout_above="@id/tv_btn_close">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_play_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.andview.refreshview.XRefreshView>
+
+</RelativeLayout>

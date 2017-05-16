@@ -55,6 +55,7 @@ public class PlayControlEvent {
     public static class StopPlay{
 
     }
+
     public static class RateOfProgress{
 
     }
@@ -70,5 +71,7 @@ public class PlayControlEvent {
     public static class Stoped{
 
     }
+    public static class PreData{
 
+    }
 }

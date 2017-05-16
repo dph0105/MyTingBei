@@ -19,7 +19,6 @@ public class MyApplication extends Application {
     private SQLiteDatabase db;
     private DaoMaster mDaoMaster;
     private DaoSession mDaoSession;
-    private int playState;   //0是暂停状态   1是播放状态
 
     @Override
     public void onCreate() {
@@ -49,17 +48,11 @@ public class MyApplication extends Application {
     public DaoSession getDaoSession() {
         return mDaoSession;
     }
+
     public SQLiteDatabase getDb() {
         return db;
     }
 
-    public int getPlayState() {
-        return playState;
-    }
-
-    public void setPlayState(int playState) {
-        this.playState = playState;
-    }
 
     @Override
     public void onTerminate() {

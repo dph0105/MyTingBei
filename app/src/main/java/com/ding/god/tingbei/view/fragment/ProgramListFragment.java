@@ -13,12 +13,16 @@ import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseFragment;
 import com.ding.god.tingbei.model.bean.ProgramListBean;
 import com.ding.god.tingbei.presenter.ProgramListPresenter;
+import com.ding.god.tingbei.service.PlayService;
+import com.ding.god.tingbei.util.cacheutil.SPUtil;
 import com.ding.god.tingbei.view.adapter.RVProgramListAdapter;
 import com.ding.god.tingbei.view.iview.IProgramListView;
 
 import java.util.List;
 
 import butterknife.BindView;
+
+import static com.ding.god.tingbei.service.PlayService.playType;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,6 +79,7 @@ public class ProgramListFragment extends BaseFragment<ProgramListPresenter> impl
         String program_type = bundle.getString("album_type");
         String program_id = bundle.getString("program_id");
         presenter.initData(program_id ,program_type, program_list_id, 1, 1);
+
     }
 
     @Override

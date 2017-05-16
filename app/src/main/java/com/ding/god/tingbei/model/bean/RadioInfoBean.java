@@ -1,12 +1,24 @@
 package com.ding.god.tingbei.model.bean;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.ToMany;
+
 import java.util.List;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.DaoException;
+import com.ding.god.tingbei.gen.DaoSession;
+import com.ding.god.tingbei.gen.RadioMenuBeanDao;
+import com.ding.god.tingbei.gen.RadioInfoBeanDao;
 
 /**
  * Created by Administrator on 2017/5/8.
  */
-
+@Entity
 public class RadioInfoBean {
+
+    @Id(autoincrement = true)
+    private Long id;
 
     /**
      * image_url : http://image.tinberfm.com//uploadnew/991741493171343.jpg
@@ -42,259 +54,272 @@ public class RadioInfoBean {
     private String phone_no;
     private int song_state;
     private String has_menu;
-    private List<MenuBean> backward_menu;
-    private List<MenuBean> current_menu;
-    private List<MenuBean> forward_menu;
+    @ToMany(referencedJoinProperty = "fid")
+    private List<RadioMenuBean> backward_menu;
+    @ToMany(referencedJoinProperty = "fid")
+    private List<RadioMenuBean> current_menu;
+    @ToMany(referencedJoinProperty = "fid")
+    private List<RadioMenuBean> forward_menu;
 
-    public String getImage_url() {
-        return image_url;
+    /** Used to resolve relations */
+    @Generated(hash = 2040040024)
+    private transient DaoSession daoSession;
+
+    /** Used for active entity operations. */
+    @Generated(hash = 6537750)
+    private transient RadioInfoBeanDao myDao;
+    @Generated(hash = 963148467)
+    public RadioInfoBean(Long id, String image_url, int ts_diffence, int program_type, String program_host, String program_describe, String program_name, String program_list_id, String start_time, String live_stream, String end_time, String radio_name, String phone_no, int song_state, String has_menu) {
+        this.id = id;
+        this.image_url = image_url;
+        this.ts_diffence = ts_diffence;
+        this.program_type = program_type;
+        this.program_host = program_host;
+        this.program_describe = program_describe;
+        this.program_name = program_name;
+        this.program_list_id = program_list_id;
+        this.start_time = start_time;
+        this.live_stream = live_stream;
+        this.end_time = end_time;
+        this.radio_name = radio_name;
+        this.phone_no = phone_no;
+        this.song_state = song_state;
+        this.has_menu = has_menu;
     }
-
+    @Generated(hash = 1998898844)
+    public RadioInfoBean() {
+    }
+    public Long getId() {
+        return this.id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getImage_url() {
+        return this.image_url;
+    }
     public void setImage_url(String image_url) {
         this.image_url = image_url;
     }
-
     public int getTs_diffence() {
-        return ts_diffence;
+        return this.ts_diffence;
     }
-
     public void setTs_diffence(int ts_diffence) {
         this.ts_diffence = ts_diffence;
     }
-
     public int getProgram_type() {
-        return program_type;
+        return this.program_type;
     }
-
     public void setProgram_type(int program_type) {
         this.program_type = program_type;
     }
-
     public String getProgram_host() {
-        return program_host;
+        return this.program_host;
     }
-
     public void setProgram_host(String program_host) {
         this.program_host = program_host;
     }
-
     public String getProgram_describe() {
-        return program_describe;
+        return this.program_describe;
     }
-
     public void setProgram_describe(String program_describe) {
         this.program_describe = program_describe;
     }
-
     public String getProgram_name() {
-        return program_name;
+        return this.program_name;
     }
-
     public void setProgram_name(String program_name) {
         this.program_name = program_name;
     }
-
     public String getProgram_list_id() {
-        return program_list_id;
+        return this.program_list_id;
     }
-
     public void setProgram_list_id(String program_list_id) {
         this.program_list_id = program_list_id;
     }
-
     public String getStart_time() {
-        return start_time;
+        return this.start_time;
     }
-
     public void setStart_time(String start_time) {
         this.start_time = start_time;
     }
-
     public String getLive_stream() {
-        return live_stream;
+        return this.live_stream;
     }
-
     public void setLive_stream(String live_stream) {
         this.live_stream = live_stream;
     }
-
     public String getEnd_time() {
-        return end_time;
+        return this.end_time;
     }
-
     public void setEnd_time(String end_time) {
         this.end_time = end_time;
     }
-
     public String getRadio_name() {
-        return radio_name;
+        return this.radio_name;
     }
-
     public void setRadio_name(String radio_name) {
         this.radio_name = radio_name;
     }
-
     public String getPhone_no() {
-        return phone_no;
+        return this.phone_no;
     }
-
     public void setPhone_no(String phone_no) {
         this.phone_no = phone_no;
     }
-
     public int getSong_state() {
-        return song_state;
+        return this.song_state;
     }
-
     public void setSong_state(int song_state) {
         this.song_state = song_state;
     }
-
     public String getHas_menu() {
-        return has_menu;
+        return this.has_menu;
     }
-
     public void setHas_menu(String has_menu) {
         this.has_menu = has_menu;
     }
-
-    public List<MenuBean> getBackward_menu() {
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1582262385)
+    public List<RadioMenuBean> getBackward_menu() {
+        if (backward_menu == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            RadioMenuBeanDao targetDao = daoSession.getRadioMenuBeanDao();
+            List<RadioMenuBean> backward_menuNew = targetDao._queryRadioInfoBean_Backward_menu(id);
+            synchronized (this) {
+                if (backward_menu == null) {
+                    backward_menu = backward_menuNew;
+                }
+            }
+        }
         return backward_menu;
     }
-
-    public void setBackward_menu(List<MenuBean> backward_menu) {
-        this.backward_menu = backward_menu;
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1126797963)
+    public synchronized void resetBackward_menu() {
+        backward_menu = null;
     }
-
-    public List<MenuBean> getCurrent_menu() {
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1498006711)
+    public List<RadioMenuBean> getCurrent_menu() {
+        if (current_menu == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            RadioMenuBeanDao targetDao = daoSession.getRadioMenuBeanDao();
+            List<RadioMenuBean> current_menuNew = targetDao._queryRadioInfoBean_Current_menu(id);
+            synchronized (this) {
+                if (current_menu == null) {
+                    current_menu = current_menuNew;
+                }
+            }
+        }
         return current_menu;
     }
-
-    public void setCurrent_menu(List<MenuBean> current_menu) {
-        this.current_menu = current_menu;
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 708703928)
+    public synchronized void resetCurrent_menu() {
+        current_menu = null;
     }
-
-    public List<MenuBean> getForward_menu() {
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1350176708)
+    public List<RadioMenuBean> getForward_menu() {
+        if (forward_menu == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            RadioMenuBeanDao targetDao = daoSession.getRadioMenuBeanDao();
+            List<RadioMenuBean> forward_menuNew = targetDao._queryRadioInfoBean_Forward_menu(id);
+            synchronized (this) {
+                if (forward_menu == null) {
+                    forward_menu = forward_menuNew;
+                }
+            }
+        }
         return forward_menu;
     }
-
-    public void setForward_menu(List<MenuBean> forward_menu) {
-        this.forward_menu = forward_menu;
+    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    @Generated(hash = 1439295375)
+    public synchronized void resetForward_menu() {
+        forward_menu = null;
+    }
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 128553479)
+    public void delete() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.delete(this);
+    }
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 1942392019)
+    public void refresh() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.refresh(this);
+    }
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 713229351)
+    public void update() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.update(this);
+    }
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1334327813)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getRadioInfoBeanDao() : null;
     }
 
-    public static class MenuBean {
-        /**
-         * album_id : 8tKgyNXTHT9BWtP
-         * program_name : 音乐More and More
-         * program_describe : 为你私人定制的音乐电台，让我们一起来收听最好的音乐
-         * start_time : 00:00
-         * end_time : 05:00
-         * program_host : RCS轮播
-         * phone_no :
-         * day : 7
-         * live_stream : http://hls1.gzstv.com/livegztv/yinyue/index.m3u8
-         * radio_name : 916 贵州音乐 iRadio
-         * program_type : 1
-         */
-
-        private String album_id;
-        private String program_name;
-        private String program_describe;
-        private String start_time;
-        private String end_time;
-        private String program_host;
-        private String phone_no;
-        private String day;
-        private String live_stream;
-        private String radio_name;
-        private int program_type;
-
-        public String getAlbum_id() {
-            return album_id;
-        }
-
-        public void setAlbum_id(String album_id) {
-            this.album_id = album_id;
-        }
-
-        public String getProgram_name() {
-            return program_name;
-        }
-
-        public void setProgram_name(String program_name) {
-            this.program_name = program_name;
-        }
-
-        public String getProgram_describe() {
-            return program_describe;
-        }
-
-        public void setProgram_describe(String program_describe) {
-            this.program_describe = program_describe;
-        }
-
-        public String getStart_time() {
-            return start_time;
-        }
-
-        public void setStart_time(String start_time) {
-            this.start_time = start_time;
-        }
-
-        public String getEnd_time() {
-            return end_time;
-        }
-
-        public void setEnd_time(String end_time) {
-            this.end_time = end_time;
-        }
-
-        public String getProgram_host() {
-            return program_host;
-        }
-
-        public void setProgram_host(String program_host) {
-            this.program_host = program_host;
-        }
-
-        public String getPhone_no() {
-            return phone_no;
-        }
-
-        public void setPhone_no(String phone_no) {
-            this.phone_no = phone_no;
-        }
-
-        public String getDay() {
-            return day;
-        }
-
-        public void setDay(String day) {
-            this.day = day;
-        }
-
-        public String getLive_stream() {
-            return live_stream;
-        }
-
-        public void setLive_stream(String live_stream) {
-            this.live_stream = live_stream;
-        }
-
-        public String getRadio_name() {
-            return radio_name;
-        }
-
-        public void setRadio_name(String radio_name) {
-            this.radio_name = radio_name;
-        }
-
-        public int getProgram_type() {
-            return program_type;
-        }
-
-        public void setProgram_type(int program_type) {
-            this.program_type = program_type;
-        }
+    @Override
+    public String toString() {
+        return "RadioInfoBean{" +
+                "id=" + id +
+                ", image_url='" + image_url + '\'' +
+                ", ts_diffence=" + ts_diffence +
+                ", program_type=" + program_type +
+                ", program_host='" + program_host + '\'' +
+                ", program_describe='" + program_describe + '\'' +
+                ", program_name='" + program_name + '\'' +
+                ", program_list_id='" + program_list_id + '\'' +
+                ", start_time='" + start_time + '\'' +
+                ", live_stream='" + live_stream + '\'' +
+                ", end_time='" + end_time + '\'' +
+                ", radio_name='" + radio_name + '\'' +
+                ", phone_no='" + phone_no + '\'' +
+                ", song_state=" + song_state +
+                ", has_menu='" + has_menu + '\'' +
+                ", backward_menu=" + backward_menu +
+                ", current_menu=" + current_menu +
+                ", forward_menu=" + forward_menu +
+                ", daoSession=" + daoSession +
+                ", myDao=" + myDao +
+                '}';
     }
 }

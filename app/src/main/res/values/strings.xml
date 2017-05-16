@@ -30,4 +30,7 @@
     <string name="select">选集</string>
     <string name="play_list">节目单</string>
     <string name="play_leave_message">话题留言</string>
+    <string name="play_loop">顺序播放</string>
+    <string name="play_shuffle">随机播放</string>
+    <string name="close">关闭</string>
 </resources>

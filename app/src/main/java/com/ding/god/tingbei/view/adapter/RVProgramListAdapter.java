@@ -12,6 +12,8 @@ import com.ding.god.tingbei.R;
 import com.ding.god.tingbei.base.BaseRVAdapter;
 import com.ding.god.tingbei.model.bean.ProgramListBean;
 import com.ding.god.tingbei.rx.event.IntentEvent;
+import com.ding.god.tingbei.service.PlayService;
+import com.ding.god.tingbei.util.cacheutil.SPUtil;
 import com.ding.god.tingbei.view.activity.ProgramPlayActivity;
 
 import butterknife.BindView;
@@ -46,6 +48,7 @@ public class RVProgramListAdapter extends BaseRVAdapter<ProgramListBean,RVProgra
                 intent.putExtra("program_type",getDatas().get(position).getProgram_type());
                 intent.putExtra("customer_id", APPConstants.CUSTOMER_ID);
                 mContext.startActivity(intent);
+                SPUtil.putInt(mContext,PlayService.SP_PLAY_POSITION_KEY,position);
             }
         });
 

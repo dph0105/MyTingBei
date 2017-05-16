@@ -13,6 +13,9 @@ import com.ding.god.tingbei.service.PlayService;
 import com.ding.god.tingbei.model.bean.ProgramInfoBean;
 import com.ding.god.tingbei.view.iview.IProgramPlayView;
 
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+
 /**
  * Created by Administrator on 2017/5/12.
  */
@@ -34,15 +37,20 @@ public class ProgramPlayPresenter extends BasePresenter<ProgramPlayModel,IProgra
                         startPlayRefresh.setProgramInfoBean(response.getData());
                         RxBus.getRxBus().postSticky(startPlayRefresh);
                     }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        mView.toast("联网失败",0);
+                    }
                 });
     }
 
     public void playControl(){
-        if(PlayService.getPlayState()==PlayService.PLAYSTATE_NULL||PlayService.getPlayState()==PlayService.PLAYSTATE_PAUSE) {
+        if(PlayService.playState==PlayService.PLAYSTATE_NULL||PlayService.playState==PlayService.PLAYSTATE_PAUSE) {
             PlayControlEvent.StartPlay startPlay = new PlayControlEvent.StartPlay();
             startPlay.setProgramInfoBean(mModel.getProgramInfoBean());
             RxBus.getRxBus().postSticky(startPlay);
-        }else if(PlayService.getPlayState()==PlayService.PLAYSTATE_PLAYING) {
+        }else if(PlayService.playState==PlayService.PLAYSTATE_PLAYING) {
             RxBus.getRxBus().postSticky(new PlayControlEvent.StopPlay());
         }
     }

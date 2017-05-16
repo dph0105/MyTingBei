@@ -34,11 +34,11 @@ public class RadioPlayPresenter extends BasePresenter<RadioPlayModel,IRadioPlayV
                 .subscribe(new MConsumer<BaseResponse<RadioInfoBean>>() {
                     @Override
                     public void response(BaseResponse<RadioInfoBean> response) {
-                        mModel.setRadioInfoBean(response.getData());
+                        mModel.setRadioInfoBean(context,response.getData());
                         mView.setView(response.getData());
                         PlayControlEvent.StartPlayRefresh startPlayRefresh = new PlayControlEvent.StartPlayRefresh();
                         startPlayRefresh.setRadioInfoBean(response.getData());
-                        RxBus.getRxBus().postSticky(startPlayRefresh);
+                        RxBus.getRxBus().postSticky(new PlayControlEvent.PreData());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -49,11 +49,11 @@ public class RadioPlayPresenter extends BasePresenter<RadioPlayModel,IRadioPlayV
     }
 
     public void playControl(){
-        if(PlayService.getPlayState()==PlayService.PLAYSTATE_NULL||PlayService.getPlayState()==PlayService.PLAYSTATE_PAUSE) {
+        if(PlayService.playState==PlayService.PLAYSTATE_NULL||PlayService.playState==PlayService.PLAYSTATE_PAUSE) {
             PlayControlEvent.StartPlay startPlay = new PlayControlEvent.StartPlay();
             startPlay.setRadioBean(mModel.getRadioInfoBean());
             RxBus.getRxBus().postSticky(startPlay);
-        }else if(PlayService.getPlayState()==PlayService.PLAYSTATE_PLAYING) {
+        }else if(PlayService.playState==PlayService.PLAYSTATE_PLAYING) {
             RxBus.getRxBus().postSticky(new PlayControlEvent.StopPlay());
         }
     }

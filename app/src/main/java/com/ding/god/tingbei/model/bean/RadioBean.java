@@ -1,10 +1,14 @@
 package com.ding.god.tingbei.model.bean;
 
+import org.greenrobot.greendao.annotation.Entity;
+
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2017/4/28.
  */
 
-public class RadioBean {
+public class RadioBean{
     /**
      * radio_id : 517WLWrj6Gem8JR
      * live_stream : http://hls1.gzstv.com/livegztv/yinyue/index.m3u8
